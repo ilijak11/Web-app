@@ -1,0 +1,39 @@
+<div>
+    <div>
+        <header>
+            <a routerLink="/user">Nazad</a>
+            <a href="/user/bills#canvasMonth">Potrosnja u tekucem mesecu</a>
+            <a href="/user/bills#canvasYear">Potrosnja u tekucoj godini</a>
+        </header>
+    </div>
+    <div class="container">
+        <div>
+            <div class="child">
+                <label class="label">Moji racuni</label>
+                <hr>
+                <div *ngIf="myBills">
+                    <div *ngFor="let bill of myBills">
+                        <app-view-bill-details [bill]="bill"></app-view-bill-details>
+                    </div>
+                </div>
+                <div *ngIf="!myBills">
+                    <label class="label">Nema racuna</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            
+            <div class="chart">
+                <label class="label">Portosnja u tekucoj mesecu: </label>
+                <canvas id="canvasMonth" #canvasMonth>
+
+                </canvas>
+                <label class="label">Portosnja u tekucoj godini: </label>
+                <canvas id="canvasYear" #canvasYear>
+
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>

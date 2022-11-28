@@ -1,0 +1,41 @@
+
+<div class="child">
+    <div>
+        <label class="label">Odaberite objekat: </label>
+        <br>
+        <select name="obj" [(ngModel)]="objectName" (change)="change()" class="input" style="width: 20%">
+            <option *ngFor="let obj of allObjects" value="{{obj.name}}">{{obj.name}}</option>
+        </select>
+    </div>
+    <div style="width: 100%;">
+        <div *ngIf="restaurant">
+            <app-bill-table-layout [object]="restaurant"  [change]="changeNum" (openBillEvent)="openBill($event)"></app-bill-table-layout>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div *ngIf="takenTables.length">
+            <label class="label">Otvoreni racuni</label>
+            <br>
+            <div style="display: flex; flex-direction: row;">
+                <div *ngFor="let table of takenTables" class="table">
+                    <div>
+                        <label class="label1">Sto: {{table.tableID}}</label>
+                        <br>
+                        <label class="label1">Sekcija: {{table.sectionName}}</label>
+                    </div>
+                    <div>
+                        <button class="button" (click)="showBill(table)" style="width: 100%">Prikazi</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="selectedTableBill">
+                <app-bill-table [company]="company" [billItems]="selectedTableBill.billItems" [tableDesc]="selectedTableBill" [object]="object" (closeBill)="closeBill($event)"></app-bill-table>
+            </div>
+        </div>
+        <div *ngIf="!takenTables.length && object">
+            <label class="label">Nema otvorenih racuna</label>
+        </div>
+    </div>
+</div>
+

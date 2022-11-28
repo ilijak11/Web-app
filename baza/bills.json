@@ -1,0 +1,399 @@
+[{
+  "_id": {
+    "$oid": "62b3a7bc47a00cd3398a3cd6"
+  },
+  "paymentMethod": 0,
+  "userFirstname": null,
+  "userLastname": null,
+  "userPaid": 1000,
+  "userChange": 100,
+  "billNumber": null,
+  "userID": "123456789",
+  "companyID": "2323232323",
+  "companyName": "Dobro jelo",
+  "pib": "123456789",
+  "objectName": "Restoran",
+  "virmanCompanyID": null,
+  "discount": null,
+  "paymentDeadline": null,
+  "date": {
+    "$date": {
+      "$numberLong": "1655941052701"
+    }
+  },
+  "price": 900,
+  "basePrice": 750,
+  "items": [
+    {
+      "itemName": "Burger",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 720,
+      "basePrice": 600,
+      "_id": {
+        "$oid": "62b3a7bc47a00cd3398a3cd7"
+      }
+    },
+    {
+      "itemName": "Coca Cola",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b3a7bc47a00cd3398a3cd8"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b3a80647a00cd3398a3ce4"
+  },
+  "paymentMethod": 2,
+  "userFirstname": null,
+  "userLastname": null,
+  "userPaid": null,
+  "userChange": null,
+  "billNumber": {
+    "$numberLong": "445566775544"
+  },
+  "userID": "123456789",
+  "companyID": "2323232323",
+  "companyName": "Dobro jelo",
+  "pib": "123456789",
+  "objectName": "Restoran",
+  "virmanCompanyID": null,
+  "discount": null,
+  "paymentDeadline": null,
+  "date": {
+    "$date": {
+      "$numberLong": "1655941126001"
+    }
+  },
+  "price": 1800,
+  "basePrice": 1500,
+  "items": [
+    {
+      "itemName": "Burger",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 2,
+      "price": 1440,
+      "basePrice": 1200,
+      "_id": {
+        "$oid": "62b3a80647a00cd3398a3ce5"
+      }
+    },
+    {
+      "itemName": "Fanta",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b3a80647a00cd3398a3ce6"
+      }
+    },
+    {
+      "itemName": "Coca Cola",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b3a80647a00cd3398a3ce7"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b3af8668a0517c590d615b"
+  },
+  "paymentMethod": 3,
+  "userFirstname": null,
+  "userLastname": null,
+  "userPaid": null,
+  "userChange": null,
+  "billNumber": null,
+  "userID": null,
+  "companyID": "2323232323",
+  "companyName": "Dobro jelo",
+  "pib": "123456789",
+  "objectName": "Restoran",
+  "virmanCompanyID": "45454545",
+  "discount": 0.1,
+  "paymentDeadline": 150,
+  "date": {
+    "$date": {
+      "$numberLong": "1655943046938"
+    }
+  },
+  "price": 1620,
+  "basePrice": 1350,
+  "items": [
+    {
+      "itemName": "Coca Cola",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 2,
+      "price": 360,
+      "basePrice": 300,
+      "_id": {
+        "$oid": "62b3af8668a0517c590d615c"
+      }
+    },
+    {
+      "itemName": "Burger",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 2,
+      "price": 1440,
+      "basePrice": 1200,
+      "_id": {
+        "$oid": "62b3af8668a0517c590d615d"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b3b28068a0517c590d617f"
+  },
+  "paymentMethod": 0,
+  "userFirstname": null,
+  "userLastname": null,
+  "userPaid": 200,
+  "userChange": 20,
+  "billNumber": null,
+  "userID": "123456789",
+  "companyID": "2323232323",
+  "companyName": "Dobro jelo",
+  "pib": "123456789",
+  "objectName": "Restoran",
+  "virmanCompanyID": null,
+  "discount": null,
+  "paymentDeadline": null,
+  "date": {
+    "$date": {
+      "$numberLong": "1655943808267"
+    }
+  },
+  "price": 180,
+  "basePrice": 150,
+  "items": [
+    {
+      "itemName": "Coca Cola",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b3b28068a0517c590d6180"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b3b2c768a0517c590d6188"
+  },
+  "paymentMethod": 2,
+  "userFirstname": null,
+  "userLastname": null,
+  "userPaid": null,
+  "userChange": null,
+  "billNumber": 1231245513,
+  "userID": "234567890",
+  "companyID": "2323232323",
+  "companyName": "Dobro jelo",
+  "pib": "123456789",
+  "objectName": "Restoran",
+  "virmanCompanyID": null,
+  "discount": null,
+  "paymentDeadline": null,
+  "date": {
+    "$date": {
+      "$numberLong": "1655943879182"
+    }
+  },
+  "price": 1800,
+  "basePrice": 1500,
+  "items": [
+    {
+      "itemName": "Burger",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 2,
+      "price": 1440,
+      "basePrice": 1200,
+      "_id": {
+        "$oid": "62b3b2c768a0517c590d6189"
+      }
+    },
+    {
+      "itemName": "Fanta",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b3b2c768a0517c590d618a"
+      }
+    },
+    {
+      "itemName": "Coca Cola",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b3b2c768a0517c590d618b"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b3b2f468a0517c590d619b"
+  },
+  "paymentMethod": 0,
+  "userFirstname": null,
+  "userLastname": null,
+  "userPaid": 400,
+  "userChange": 40,
+  "billNumber": null,
+  "userID": "123456789",
+  "companyID": "2323232323",
+  "companyName": "Dobro jelo",
+  "pib": "123456789",
+  "objectName": "Restoran",
+  "virmanCompanyID": null,
+  "discount": null,
+  "paymentDeadline": null,
+  "date": {
+    "$date": {
+      "$numberLong": "1655943924797"
+    }
+  },
+  "price": 360,
+  "basePrice": 300,
+  "items": [
+    {
+      "itemName": "Fanta",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 2,
+      "price": 360,
+      "basePrice": 300,
+      "_id": {
+        "$oid": "62b3b2f468a0517c590d619c"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b444749ea751ed332671c4"
+  },
+  "paymentMethod": 2,
+  "userFirstname": null,
+  "userLastname": null,
+  "userPaid": null,
+  "userChange": null,
+  "billNumber": {
+    "$numberLong": "23523523523"
+  },
+  "userID": "123456789",
+  "companyID": "2323232323",
+  "companyName": "Burger/Pizza",
+  "pib": "123456789",
+  "objectName": "Restoran",
+  "virmanCompanyID": null,
+  "discount": null,
+  "paymentDeadline": null,
+  "date": {
+    "$date": {
+      "$numberLong": "1655981172744"
+    }
+  },
+  "price": 2520,
+  "basePrice": 2100,
+  "items": [
+    {
+      "itemName": "Pizza Capricciosa",
+      "itemUnit": "porcija",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 840,
+      "basePrice": 700,
+      "_id": {
+        "$oid": "62b444749ea751ed332671c5"
+      }
+    },
+    {
+      "itemName": "Coca Cola",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b444749ea751ed332671c6"
+      }
+    },
+    {
+      "itemName": "Pomfrit",
+      "itemUnit": "porcija",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 120,
+      "basePrice": 100,
+      "_id": {
+        "$oid": "62b444749ea751ed332671c7"
+      }
+    },
+    {
+      "itemName": "Americke palacinke",
+      "itemUnit": "porcija",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 480,
+      "basePrice": 400,
+      "_id": {
+        "$oid": "62b444749ea751ed332671c8"
+      }
+    },
+    {
+      "itemName": "Pizza Mozzarella",
+      "itemUnit": "porcija",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 720,
+      "basePrice": 600,
+      "_id": {
+        "$oid": "62b444749ea751ed332671c9"
+      }
+    },
+    {
+      "itemName": "Fanta",
+      "itemUnit": "komad",
+      "itemTax": "0.2",
+      "itemQuantity": 1,
+      "price": 180,
+      "basePrice": 150,
+      "_id": {
+        "$oid": "62b444749ea751ed332671ca"
+      }
+    }
+  ],
+  "__v": 0
+}]

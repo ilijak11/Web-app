@@ -1,0 +1,40 @@
+<div>
+    <header style="background-color: orange;">
+
+    </header>
+    <div>
+        <div class="container">
+            <div class="login" [style]="loginErrorStyle">
+                <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+                    <label class="label" for="id_username">Admin Prijava:</label>
+                    <hr/>
+                    <div>
+                        <label class="label" for="id_username">Korisnicko Ime:</label>
+                        <input id="id_username" type="text" formControlName="username" class="input">
+                        <div *ngIf="adminLoginForm.controls['username'].invalid && (adminLoginForm.controls['username'].dirty || adminLoginForm.controls['username'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="adminLoginForm.controls['username'].errors['required']">
+                               Korisnicko ime je obavezno.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_password">Lozinka:</label>
+                        <input id="id_password" type="password" formControlName="password" class="input">
+                        <div *ngIf="adminLoginForm.controls['password'].invalid && (adminLoginForm.controls['password'].dirty || adminLoginForm.controls['password'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="adminLoginForm.controls['password'].errors['required']">
+                                Lozinka je obavezna.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button" style="margin: 20px 25%" type="submit">Prijava</button>
+                    <div *ngIf="loginError" class="error-message">
+                        {{message}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+</div>

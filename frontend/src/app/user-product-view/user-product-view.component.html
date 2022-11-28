@@ -1,0 +1,20 @@
+<div class="child">
+    <label class="label">Preduzeca i proizvodi: </label>
+    <hr>
+    <div>
+        <label class="label1" for="srch">Pretraga po nazivu: </label>
+        <br>
+        <div style="display: grid; grid-template-columns: 3fr 1fr;">
+            <form>
+                <input id="srch" class="input" name="srch" [(ngModel)]="formInput" placeholder="Unesite naziv proizvoda ili proizvodjaca...">
+            </form>
+            <button class="button" style="width: 100%;" (click)="search()">Pretraga</button>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div *ngFor="let company of companyProducts">
+            <app-diplay-company-products [companyProducts]="company" [searchParam]="searchParam"></app-diplay-company-products>
+        </div>
+    </div>
+</div>

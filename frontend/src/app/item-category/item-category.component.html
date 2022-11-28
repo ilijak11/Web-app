@@ -1,0 +1,41 @@
+<div class="grid">
+    <div class="child">
+        <label class="label">Dodaj kategoriju:</label>
+        <hr>
+        <div>
+            <form [formGroup]="form" (ngSubmit)="addNewItemCategory()">
+                <div class="grid" style="grid-template-columns: 3fr 1fr;">
+                    <div>
+                        <input id="cat" type="text" class="input" formControlName="category">
+                        <div *ngIf="form.controls['category'].invalid && (form.controls['category'].dirty || form.controls['category'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="form.controls['category'].errors['required']">
+                                Niste uneli ime kategorije.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="button" style="width: 100%;">Dodaj</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br>
+        <label class="label">Sve kategorije:</label>
+        <hr>
+        <div *ngIf="company.itemCategories.length">
+            <div *ngFor="let category of company.itemCategories">
+                <app-item-category-view [category]="category" [companyID]="company.companyID" (addedNewSubcategoryEvent)="addedNewSubcategory($event)" (itemAssignedEvent)="itemAssigned($event)"></app-item-category-view>
+            </div>
+        </div>
+        <div *ngIf="!company.itemCategories.length">
+            <label class="label">Nije dodata ni jedna kategorija...</label>
+        </div>
+    </div>
+    <div class="child">
+        <div *ngIf="allItems">
+            <div *ngFor="let category of company.itemCategories">
+                <app-category-display [category]="category" [allItems]="allItems"></app-category-display>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "62b3a8a047a00cd3398a3cfd"
+  },
+  "username": "pera",
+  "password": "pera123",
+  "firstname": "Petar",
+  "lastname": "Peric",
+  "phone": "+381632782780",
+  "idNumber": "123456789",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b3a8d147a00cd3398a3d00"
+  },
+  "username": "miki",
+  "password": "miki123",
+  "firstname": "Milan",
+  "lastname": "Pavlovic",
+  "phone": "+381639202903",
+  "idNumber": "234567890",
+  "__v": 0
+}]

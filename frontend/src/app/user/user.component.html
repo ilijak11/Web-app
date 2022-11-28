@@ -1,0 +1,12 @@
+<div>
+    <header>
+        <a routerLink="/user/bills">Moji racuni</a>
+        <button class="button" style="background-color: red; width: 20%;" (click)="logout()">Kraj rada</button>
+        <button class="button" style="width: 20%;" (click)="changePassword()">Promena lozinke</button>
+    </header>
+    <div class="container">
+        <div>
+            <app-user-product-view [user]="user"></app-user-product-view>
+        </div>
+    </div>
+</div>

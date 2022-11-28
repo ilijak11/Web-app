@@ -1,0 +1,266 @@
+<div>
+    <div>
+        <header style="background-color: orange;">
+            <a routerLink="/admin">Nazad</a>
+        </header>
+    </div>
+    <div class="container">
+        <div>
+            <div class="child" style="background-color: orange;">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" (reset)="resetForm()">
+                    <div class="grid">
+                        <div>
+                            <div>
+                                <label class="label" for="id_name">Informacije o nalogu:</label>
+                            </div>
+                            <hr/>
+                            <div>
+                                <label class="label" for="id_name">Ime:</label>
+                                <input id="id_name" type="text" formControlName="firstname" class="input">
+                                <div *ngIf="registerForm.controls['firstname'].invalid && (registerForm.controls['firstname'].dirty || registerForm.controls['firstname'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['firstname'].errors['required']">
+                                        Ime je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_lastname">Prezime:</label>
+                                <input id="id_lastname" type="text" formControlName="lastname" class="input">
+                                <div *ngIf="registerForm.controls['lastname'].invalid && (registerForm.controls['lastname'].dirty || registerForm.controls['lastname'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['lastname'].errors['required']">
+                                        Prezime je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_username">Korisnicko ime:</label>
+                                <input id="id_username" type="text" formControlName="username" class="input">
+                                <div *ngIf="registerForm.controls['username'].invalid && (registerForm.controls['username'].dirty || registerForm.controls['username'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['username'].errors['required']">
+                                        Korisnicko ime je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_phone">Kontakt telefon:</label>
+                                <input id="id_phone" type="text" formControlName="phone" class="input">
+                                <div *ngIf="registerForm.controls['phone'].invalid && (registerForm.controls['phone'].dirty || registerForm.controls['phone'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['phone'].errors['required']">
+                                        Kontakt telefon je obavezano polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_email">e-mail:</label>
+                                <input id="id_email" type="text" formControlName="email" class="input">
+                                <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['email'].errors['required']">
+                                        e-mail je obavezano polje.
+                                    </div>
+                                    <div *ngIf="registerForm.controls['email'].errors['pattern']">
+                                        Neadekvatan e-mail.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_pass">Lozinka:</label>
+                                <input id="id_pass" type="password" formControlName="password" class="input">
+                                <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['password'].errors['required']">
+                                        Lozinka je obavezno polje.
+                                    </div>
+                                    <div *ngIf="registerForm.controls['password'].errors['pattern']">
+                                        Neadekvatna lozinka.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_repeatpass">Ponovi lozinku:</label>
+                                <input id="id_repeatpass" type="password" formControlName="passwordRepeat" class="input">
+                                <div *ngIf="registerForm.controls['passwordRepeat'].invalid && (registerForm.controls['passwordRepeat'].dirty || registerForm.controls['passwordRepeat'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['passwordRepeat'].errors['required']">
+                                        Obavezno polje.
+                                    </div>
+                                    <div *ngIf="registerForm.controls['passwordRepeat'].errors['noMatch']">
+                                        Lozinke su razlicite.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <label class="label" for="id_companyName">Adresa:</label>
+                            </div>
+                            <hr>
+                            <div>
+                                <label class="label" for="id_country">Drzava:</label>
+                                <input id="id_country" type="text" formControlName="country" class="input">
+                                <div *ngIf="registerForm.controls['country'].invalid && (registerForm.controls['country'].dirty || registerForm.controls['country'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['country'].errors['required']">
+                                        Drzava je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_city">Grad:</label>
+                                <input id="id_city" type="text" formControlName="city" class="input">
+                                <div *ngIf="registerForm.controls['city'].invalid && (registerForm.controls['city'].dirty || registerForm.controls['city'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['city'].errors['required']">
+                                        Grad je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_postCode">Postanski broj:</label>
+                                <input id="id_postCode" type="text" formControlName="postCode" class="input">
+                                <div *ngIf="registerForm.controls['postCode'].invalid && (registerForm.controls['postCode'].dirty || registerForm.controls['postCode'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['postCode'].errors['required']">
+                                        Postanski broj je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_street">Ulica:</label>
+                                <input id="id_street" type="text" formControlName="street" class="input">
+                                <div *ngIf="registerForm.controls['street'].invalid && (registerForm.controls['street'].dirty || registerForm.controls['street'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['street'].errors['required']">
+                                        Ulica je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label" for="id_streetNumber">Broj:</label>
+                                <input id="id_streetNumber" type="text" formControlName="streetNumber" class="input">
+                                <div *ngIf="registerForm.controls['streetNumber'].invalid && (registerForm.controls['streetNumber'].dirty || registerForm.controls['streetNumber'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="registerForm.controls['streetNumber'].errors['required']">
+                                        Broj je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <div>
+                                    <label class="label">Logo: </label>
+                                    <input type="file" formControlName="picture" (change)="onFileChange($event)">
+                                    <div *ngIf="registerForm.controls['picture'].invalid && (registerForm.controls['picture'].dirty || registerForm.controls['picture'].touched || isSubmitted)" class="alert">
+                                        <div *ngIf="registerForm.controls['picture'].errors['required']">
+                                            Obavezno polje.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img [src]="imageSrc" height="100" width="100" style="border: 2px solid black">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div>
+                            <label class="label" for="id_companyName">Informacije o preduzecu:</label>
+                        </div>
+                        <hr/>
+                        <div>
+                            <label class="label" for="id_companyName">Naziv preduzeca:</label>
+                            <input id="id_companyName" type="text" formControlName="companyName" class="input">
+                            <div *ngIf="registerForm.controls['companyName'].invalid && (registerForm.controls['companyName'].dirty || registerForm.controls['companyName'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="registerForm.controls['companyName'].errors['required']">
+                                    Naziv preduzeca je obavezno polje.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label" for="id_pib">PIB:</label>
+                            <input id="id_pib" type="text" formControlName="pib" class="input">
+                            <div *ngIf="registerForm.controls['pib'].invalid && (registerForm.controls['pib'].dirty || registerForm.controls['pib'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="registerForm.controls['pib'].errors['required']">
+                                    PIB je obavezno polje.
+                                </div>
+                                <div *ngIf="registerForm.controls['pib'].errors['pattern']">
+                                    PIB: ne moze poceti sa 0. <br> PIB ima 9 cifara eg. 022222222
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label" for="id_companyID">Maticni broj firme:</label>
+                            <input id="id_companyID" type="text" formControlName="companyID" class="input">
+                            <div *ngIf="registerForm.controls['companyID'].invalid && (registerForm.controls['companyID'].dirty || registerForm.controls['companyID'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="registerForm.controls['companyID'].errors['required']">
+                                    Maticni broj firme je obavezno polje.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label" for="id_category">Kategorija preduzeca:</label>
+                            <select id="id_category" formControlName="category" class="input">
+                                <option value="0">Prodavnica</option>
+                                <option value="1">Ugostiteljski objekat</option>
+                            </select>
+                            <div *ngIf="registerForm.controls['category'].invalid && (registerForm.controls['category'].dirty || registerForm.controls['category'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="registerForm.controls['category'].errors['required']">
+                                    Kategorija je obavezno polje.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label" for="id_activityCodes">Sifra delatnosti (jedna ili vise):</label>
+                            <select multiple id="id_activityCodes" formControlName="activityCodes" class="input">
+                                <option *ngFor="let code of codes">{{code}}</option>
+                            </select>
+                            <div *ngIf="registerForm.controls['activityCodes'].invalid && (registerForm.controls['activityCodes'].dirty || registerForm.controls['activityCodes'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="registerForm.controls['activityCodes'].errors['required']">
+                                    Mora biti oznacena bar jedna sifra delatnosti.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label" for="id_PDVsystem">u PDV sistemu: </label>
+                            <input id="id_PDVsystem" type="checkbox" formControlName="PDVsystem" value="true">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_rba">Registracija ziro racuna:</label>
+                        <input id="id_rba" type="checkbox" formControlName="registerBankAccounts" value="true">
+                        <div *ngIf="registerForm.controls['registerBankAccounts'].value">
+                            <app-register-bank-accounts></app-register-bank-accounts>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_storageUnits">Broj magacina:</label>
+                        <br>
+                        <input id="id_storageUnits" type="number" formControlName="storageUnitNumber" class="input" style="width: 25%">
+                        <div *ngIf="registerForm.controls['storageUnitNumber'].invalid && (registerForm.controls['storageUnitNumber'].dirty || registerForm.controls['storageUnitNumber'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerForm.controls['storageUnitNumber'].errors['required']">
+                            Broj magacina firme je obavezno polje.
+                            </div>
+                        </div>
+                        <div *ngIf="registerForm.controls['storageUnitNumber'].value">
+                            <app-register-storage-units [numberOfStorageUnits]="registerForm.controls['storageUnitNumber'].value"></app-register-storage-units>
+                            <div *ngIf="errorSU" class="alert">
+                                Niste registrovali sve magacine.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_cashRegister">Broj fiskalnih kasa:</label>
+                        <br>
+                        <input id="id_cashRegister" type="number" formControlName="cashRegisterNumber" class="input" style="width: 25%">
+                        <div *ngIf="registerForm.controls['cashRegisterNumber'].invalid && (registerForm.controls['cashRegisterNumber'].dirty || registerForm.controls['cashRegisterNumber'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerForm.controls['cashRegisterNumber'].errors['required']">
+                            Broj fiskalnih kasa firme je obavezno polje.
+                            </div>
+                        </div>
+                        <div *ngIf="registerForm.controls['cashRegisterNumber'].value">
+                            <app-register-cash-registers [cashRegisterNumber]="registerForm.controls['cashRegisterNumber'].value"></app-register-cash-registers>
+                            <div *ngIf="errorCR" class="alert">
+                                Niste registrovali sve fiskalne kase.
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="button" style="background-color: darkslategrey;">Registracija</button>
+                    <button type="reset" class="button" style="background-color: darkolivegreen;">Resetuj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

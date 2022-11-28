@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login{
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 5px;
+    margin: 50px 0;
+    box-sizing: border-box;
+    background-color: orange;
+}

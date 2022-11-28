@@ -1,0 +1,9 @@
+.button1{
+    cursor: pointer;
+    background-color: darkslategrey;
+    border-radius: 4px;
+    margin: 2px 0px;
+    color: white;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

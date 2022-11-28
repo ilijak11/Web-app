@@ -1,0 +1,81 @@
+<div>
+    <div>
+        <header style="background-color: orange;">
+            <a routerLink="/admin">Nazad</a>
+        </header>
+    </div>
+    <div class="container">
+        <div>
+            <div class="child" [style]="registerStyle">
+                <label class="label">Registracija novog kupca:</label>
+                <hr>
+                <form [formGroup]="registerUserForm" (ngSubmit)="onSubmit()">
+                    <div>
+                        <label class="label" for="id_username">Korisnicko Ime:</label>
+                        <input id="id_username" #username type="text" formControlName="username" class="input">
+                        <div *ngIf="registerUserForm.controls['username'].invalid && (registerUserForm.controls['username'].dirty || registerUserForm.controls['username'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerUserForm.controls['username'].errors['required']">
+                               Korisnicko Ime je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_password">Lozinka:</label>
+                        <input id="id_password" type="password" formControlName="password" class="input">
+                        <div *ngIf="registerUserForm.controls['password'].invalid && (registerUserForm.controls['password'].dirty || registerUserForm.controls['password'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerUserForm.controls['password'].errors['required']">
+                               Lozinka je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_firstname">Ime:</label>
+                        <input id="id_firstname" type="text" formControlName="firstname" class="input">
+                        <div *ngIf="registerUserForm.controls['firstname'].invalid && (registerUserForm.controls['firstname'].dirty || registerUserForm.controls['firstname'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerUserForm.controls['firstname'].errors['required']">
+                               Ime je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_lastname">Prezime:</label>
+                        <input id="id_lastname" type="text" formControlName="lastname" class="input">
+                        <div *ngIf="registerUserForm.controls['lastname'].invalid && (registerUserForm.controls['lastname'].dirty || registerUserForm.controls['lastname'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerUserForm.controls['lastname'].errors['required']">
+                               Prezime je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_phone">Telefon:</label>
+                        <input id="id_phone" type="text" formControlName="phone" class="input">
+                        <div *ngIf="registerUserForm.controls['phone'].invalid && (registerUserForm.controls['phone'].dirty || registerUserForm.controls['phone'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerUserForm.controls['phone'].errors['required']">
+                                Telefon je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_idNumber">Broj licne karte:</label>
+                        <input id="id_idNumber" type="text" formControlName="idNumber" class="input">
+                        <div *ngIf="registerUserForm.controls['idNumber'].invalid && (registerUserForm.controls['idNumber'].dirty || registerUserForm.controls['idNumber'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="registerUserForm.controls['idNumber'].errors['required']">
+                                Broj licne karte je obavezno polje.
+                            </div>
+                            <div *ngIf="registerUserForm.controls['idNumber'].errors['pattern']">
+                                Neadekvatan broj licne karte.
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="button" style="margin: 20px 25%; background-color: darkslategrey;">Registracija</button>
+                    <div *ngIf="isSubmitted">
+                        <button (click)="resetForm()" class="button" style="margin: 20px 25%; background-color: olive;">Nov kupac</button>
+                    </div>
+                    <div *ngIf="registerError" class="error-message">
+                        {{message}}
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>

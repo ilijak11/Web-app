@@ -1,0 +1,46 @@
+<div>
+    <div *ngIf="company.bankAccounts.length > 0">
+        <br>
+    <label class="label">Ziro racuni:</label>
+    <div *ngFor="let account of company.bankAccounts" class="account">
+        <div>
+            <label class="label">Ziro racun: {{account.accountNumber}}</label>
+            <br>
+            <label class="label">Banka: {{account.bank}}</label>
+        </div>
+        <div>
+            <button class="button" style="width: 100%;" (click)="deleteAccount(account)">Obrisi</button>
+        </div>
+    </div>
+    </div>
+    <div>
+        <br>
+        <form [formGroup]="bankAccountForm" (ngSubmit)="registerNewBankAccount()">
+            <label class="label">Registracija novog ziro racuna:</label>
+            <hr>
+            <label class="label" for="id_accNum1">Ziro racun:</label>
+            <input id="id_accNum1" type="text" formControlName="accountNumber" class="input" #input>
+            <div *ngIf="bankAccountForm.controls['accountNumber'].invalid && (bankAccountForm.controls['accountNumber'].dirty || bankAccountForm.controls['accountNumber'].touched || isSubmittedBankAcc)" class="alert">
+                <div *ngIf="bankAccountForm.controls['accountNumber'].errors['required']">
+                    Broj racuna je obavezno polje.
+                </div>
+                <div *ngIf="bankAccountForm.controls['accountNumber'].errors['pattern']">
+                    Neadekvatan broj racuna.
+                    Format: 123-123456789123-12
+                </div>
+            </div>
+            <label class="label" for="id_bank1">Banka:</label>
+            <select id="id_bank1" formControlName="bank" class="input">
+                <option *ngFor="let bank of banks" value="{{bank}}">{{bank}}</option>
+            </select>
+            <div *ngIf="bankAccountForm.controls['bank'].invalid && (bankAccountForm.controls['bank'].dirty || bankAccountForm.controls['bank'].touched || isSubmittedBankAcc)" class="alert">
+                <div *ngIf="bankAccountForm.controls['bank'].errors['required']">
+                    Banka je obavezno polje.
+                </div>
+            </div>
+            <div style="padding: 15px 10px">
+                <button type="submit" class="button" style="margin: 1% 25%; background-color: darkslategrey;">Dodaj racun</button>
+            </div>
+        </form>  
+    </div>
+</div>

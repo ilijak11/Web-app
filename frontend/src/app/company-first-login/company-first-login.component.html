@@ -1,0 +1,82 @@
+<div>
+    <header>
+        <img [src]="company.imageSrc" height="75" width="75" style="border: 2px solid black">
+        <button class="button" style="background-color: red; width: 20%;" (click)="logout()">Kraj rada</button>
+    </header>
+    <div class="container">
+        <div class="child" style="width: 50%;">
+            <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" (reset)="resetForm()">
+                <label class="label">Dodatne informacije o preduzecu:</label>
+                <hr>
+                <div>
+                    <label class="label" for="id_category">Kategorija preduzeca:</label>
+                    <select id="id_category" formControlName="category" class="input">
+                        <option value="0">Prodavnica</option>
+                        <option value="1">Ugostiteljski objekat</option>
+                    </select>
+                    <div *ngIf="formGroup.controls['category'].invalid && (formGroup.controls['category'].dirty || formGroup.controls['category'].touched || isSubmitted)" class="alert">
+                        <div *ngIf="formGroup.controls['category'].errors['required']">
+                            Kategorija je obavezno polje.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="label" for="id_activityCodes">Sifra delatnosti (jedna ili vise):</label>
+                    <select multiple id="id_activityCodes" formControlName="activityCodes" class="input">
+                        <option *ngFor="let code of codes">{{code}}</option>
+                    </select>
+                    <div *ngIf="formGroup.controls['activityCodes'].invalid && (formGroup.controls['activityCodes'].dirty || formGroup.controls['activityCodes'].touched || isSubmitted)" class="alert">
+                        <div *ngIf="formGroup.controls['activityCodes'].errors['required']">
+                           Mora biti oznacena bar jedna sifra delatnosti.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="label" for="id_PDVsystem">u PDV sistemu: </label>
+                    <input id="id_PDVsystem" type="checkbox" formControlName="PDVsystem" value="true">
+                </div>
+                <div>
+                    <label class="label" for="id_rba">Registracija ziro racuna:</label>
+                    <input id="id_rba" type="checkbox" formControlName="registerBankAccounts" value="true">
+                    <div *ngIf="formGroup.controls['registerBankAccounts'].value">
+                        <app-register-bank-accounts></app-register-bank-accounts>
+                    </div>
+                </div>
+                <div>
+                    <label class="label" for="id_storageUnits">Broj magacina:</label>
+                    <br>
+                    <input id="id_storageUnits" type="number" formControlName="storageUnitNumber" class="input" style="width: 25%">
+                    <div *ngIf="formGroup.controls['storageUnitNumber'].invalid && (formGroup.controls['storageUnitNumber'].dirty || formGroup.controls['storageUnitNumber'].touched || isSubmitted)" class="alert">
+                        <div *ngIf="formGroup.controls['storageUnitNumber'].errors['required']">
+                        Broj magacina firme je obavezno polje.
+                        </div>
+                    </div>
+                    <div *ngIf="formGroup.controls['storageUnitNumber'].value">
+                        <app-register-storage-units [numberOfStorageUnits]="formGroup.controls['storageUnitNumber'].value"></app-register-storage-units>
+                        <div *ngIf="errorSU" class="alert">
+                            Niste registrovali sve magacine.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="label" for="id_cashRegister">Broj fiskalnih kasa:</label>
+                    <br>
+                    <input id="id_cashRegister" type="number" formControlName="cashRegisterNumber" class="input" style="width: 25%">
+                    <div *ngIf="formGroup.controls['cashRegisterNumber'].invalid && (formGroup.controls['cashRegisterNumber'].dirty || formGroup.controls['cashRegisterNumber'].touched || isSubmitted)" class="alert">
+                        <div *ngIf="formGroup.controls['cashRegisterNumber'].errors['required']">
+                        Broj fiskalnih kasa firme je obavezno polje.
+                        </div>
+                    </div>
+                    <div *ngIf="formGroup.controls['cashRegisterNumber'].value">
+                        <app-register-cash-registers [cashRegisterNumber]="formGroup.controls['cashRegisterNumber'].value"></app-register-cash-registers>
+                        <div *ngIf="errorCR" class="alert">
+                            Niste registrovali sve fiskalne kase.
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="button" style="background-color: darkslategrey;">Sacuvaj</button>
+                <button type="reset" class="button" style="background-color: darkolivegreen;">Resetuj</button>
+            </form>
+        </div>
+    </div>
+</div>

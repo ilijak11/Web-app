@@ -1,0 +1,62 @@
+<div class="company">
+    <div>
+        <div style="display: grid; grid-template-columns: 4fr 1fr;">
+            <div>
+                <label class="label1">Preduzece:&nbsp;&nbsp;&nbsp; </label>
+                <label class="label">{{companyProducts.companyName}}</label>
+                <label class="label1">&nbsp;&nbsp;&nbsp;Kategorija:&nbsp;&nbsp;&nbsp; </label>
+                <label class="label">{{printCategory()}}</label>
+            </div>
+            <div>
+                <button class="button" style="width: 100%;" (click)="toggleInfo()">Pregled informacija</button>
+            </div>
+        </div>
+        <div *ngIf="showInfo">
+            <label class="label1">Informacije: </label>
+            <br>
+            <label>E-mail: </label>
+            <label class="label1">{{companyProducts.email}}</label>
+            <br>
+            <label>telefon: </label>
+            <label class="label1">{{companyProducts.phone}}</label>
+            <br>
+            <label>Maticni broj: </label>
+            <label class="label1">{{companyProducts.companyID}}</label>
+            <br>
+            <label>PIB: </label>
+            <label class="label1">{{companyProducts.pib}}</label>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <label class="label1">Proizvodi: </label>
+        <br>
+        <div *ngIf="showItems.length">
+            <table>
+                <tr>
+                    <th></th>
+                    <th class="label1">Naziv artikla</th>
+                    <th class="label1">Proizvodjac</th>
+                    <th class="label1">Cena</th>
+                    <th class="label1">Provera Dostupnosti</th>
+                </tr>
+                <tr *ngFor="let item of showItems">
+                    <td style="background-color: white;">
+                        <img [src]="item.imageSrc" height="50" width="50">
+                    </td>
+                    <td class="label1">{{item.name}}</td>
+                    <td class="label1">{{printManufacturer(item)}}</td>
+                    <td class="label1">{{getMinPrice(item)}} RSD</td>
+                    <td>
+                        <div *ngFor="let storage of item.storage">
+                            <label *ngIf="storage.currentStock" class="label1">{{storage.name}}</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="!showItems.length">
+            nema proizvoda
+        </div>
+    </div>
+</div>

@@ -1,0 +1,196 @@
+<div class="child">
+    <div>
+        <label class="label">Odaberite objekat: </label>
+        <br>
+        <select name="obj" [(ngModel)]="objectName" (change)="change()" class="input" style="width: 20%">
+            <option *ngFor="let obj of allObjects" value="{{obj.name}}">{{obj.name}}</option>
+        </select>
+    </div>
+    <div class="child" style="display: grid; grid-template-columns: 1fr 1fr;">
+        <div>
+            <label class="label">Artikli: </label>
+            <hr>
+            <div *ngIf="object">
+                <div *ngFor="let item of allItems">
+                    <app-bill-item [item]="item" [object]="object" (addToBillEvent)="addToBill($event)"></app-bill-item>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label">Racun: </label>
+            <hr>
+            <div class="bill">
+                <h2>Racun</h2>
+                <hr>
+                <div>
+                    <label class="label">Stavke: </label>
+                    <br>
+                    <table>
+                        <tr>
+                            <th>Proizvod</th>
+                            <th>Kolicina</th>
+                            <th>Jedinica</th>
+                            <th>Cena po jedinici</th>
+                            <th>Osnovica</th>
+                            <th>PDV </th>
+                            <th>PDV (Novcano)</th>
+                            <th>Cena</th>
+                        </tr>
+                        <tr *ngFor="let billItem of billItems">
+                            <td class="label1">{{billItem.itemName}}</td>
+                            <td class="label1">{{billItem.itemQuantity}}</td>
+                            <td class="label1">{{billItem.itemUnit}}</td>
+                            <td class="label1">{{billItem.basePrice/billItem.itemQuantity}}</td>
+                            <td class="label1">{{billItem.basePrice}}</td>
+                            <td class="label1">{{billItem.itemTax*100}}%</td>
+                            <td class="label1">{{billItem.itemTax*billItem.basePrice}}</td>
+                            <td class="label1">{{billItem.price}}</td>
+                        </tr>
+                    </table>
+                    <div *ngIf="error && isSubmitted" class="alert">
+                        Nije uneta ni jedna stavka
+                    </div>
+                    <hr>
+                    <br>
+                    <br>
+                    <div style="float: right;">
+                        <label class="label">Ukupna cena:&nbsp;&nbsp;&nbsp;{{totalPrice}} RSD</label>
+                    </div>
+                    <br>
+                    <hr>
+                    <div>
+                        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                            <div>
+                                <label class="label" for="id_method">Nacin placanja: </label>
+                                <select id="id_method" formControlName="paymentMethod" class="input" style="width: 25%" (change)="onChange()">
+                                    <option value="0">Gotovina</option>
+                                    <option value="1">Cek</option>
+                                    <option value="2">Kartica</option>
+                                    <option value="3">Virman</option>
+                                </select>
+                                <div *ngIf="formGroup.controls['paymentMethod'].invalid && (formGroup.controls['paymentMethod'].dirty || formGroup.controls['paymentMethod'].touched || isSubmitted)" class="alert">
+                                    <div *ngIf="formGroup.controls['paymentMethod'].errors['required']">
+                                        Nacin placanja je obavezno polje.
+                                    </div>
+                                </div>
+                            </div>
+                            <div [ngSwitch]="displayForm">
+                                <div *ngSwitchDefault="">
+                                    <label class="label">Izaberite nacin placanja</label>
+                                </div>
+                                <div *ngSwitchCase="0">
+                                    <div>
+                                        <form [formGroup]="formCash">
+                                            <div>
+                                                <label class="label1" for="usrid">Broj licne karte: </label>
+                                                <br>
+                                                <input id="usrid" type="text" formControlName="userID" class="input" style="width: 50%">
+                                            </div>
+                                            <div>
+                                                <label class="label1" for="usrpaid">Korisnik platio: </label>
+                                                <br>
+                                                <input id="usrpaid" type="number" formControlName="userPaid" class="input" style="width: 50%" (input)="calculateChange()">
+                                                <div *ngIf="formCash.controls['userPaid'].invalid && (formCash.controls['userPaid'].dirty || formCash.controls['userPaid'].touched || isSubmitted)" class="alert">
+                                                    <div *ngIf="formCash.controls['userPaid'].errors['required']">
+                                                        Obavezno polje.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label1" for="usrchange">Kusur: </label>
+                                                <br>
+                                                <input id="usrchange" type="number" formControlName="userChange" class="input" style="width: 50%">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="1">
+                                    <div>
+                                        <form [formGroup]="formCheck">
+                                            <div>
+                                                <label class="label1" for="usrname">Ime: </label>
+                                                <br>
+                                                <input id="usrname" type="text" formControlName="userFirstname" class="input" style="width: 50%">
+                                                <div *ngIf="formCheck.controls['userFirstname'].invalid && (formCheck.controls['userFirstname'].dirty || formCheck.controls['userFirstname'].touched || isSubmitted)" class="alert">
+                                                    <div *ngIf="formCheck.controls['userFirstname'].errors['required']">
+                                                        Ime kupca je obavezno polje.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label1" for="usrlname">Prezime: </label>
+                                                <br>
+                                                <input id="usrlname" type="text" formControlName="userLastname" class="input" style="width: 50%">
+                                                <div *ngIf="formCheck.controls['userLastname'].invalid && (formCheck.controls['userLastname'].dirty || formCheck.controls['userLastname'].touched || isSubmitted)" class="alert">
+                                                    <div *ngIf="formCheck.controls['userLastname'].errors['required']">
+                                                        Prezime kupca je obavezno polje.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label1" for="usrid">Broj licne karte: </label>
+                                                <br>
+                                                <input id="usrid" type="text" formControlName="userID" class="input" style="width: 50%">
+                                                <div *ngIf="formCheck.controls['userID'].invalid && (formCheck.controls['userID'].dirty || formCheck.controls['userID'].touched || isSubmitted)" class="alert">
+                                                    <div *ngIf="formCheck.controls['userID'].errors['required']">
+                                                        Broj licne karte kupca je obavezno polje.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="2">
+                                    <div>
+                                        <form [formGroup]="formCard">
+                                            <div>
+                                                <label class="label1" for="usridc">Broj licne karte: </label>
+                                                <br>
+                                                <input id="usridc" type="text" formControlName="userID" class="input" style="width: 50%">
+                                                <div *ngIf="formCard.controls['userID'].invalid && (formCard.controls['userID'].dirty || formCard.controls['userID'].touched || isSubmitted)" class="alert">
+                                                    <div *ngIf="formCard.controls['userID'].errors['required']">
+                                                        Broj licne karte kupca je obavezno polje.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="label1" for="bg">Broj slip racuna: </label>
+                                                <br>
+                                                <input id="bn" type="text" formControlName="billNumber" class="input" style="width: 50%">
+                                                <div *ngIf="formCard.controls['billNumber'].invalid && (formCard.controls['billNumber'].dirty || formCard.controls['billNumber'].touched || isSubmitted)" class="alert">
+                                                    <div *ngIf="formCard.controls['billNumber'].errors['required']">
+                                                        Broj slip racuna je obavezno polje.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div *ngSwitchCase="3">
+                                    <div>
+                                        <form [formGroup]="formVirman">
+                                            <div>
+                                                <label class="label1" for="idvir">Odaberite virmana</label>
+                                                <select id="idvir" formControlName="virman" class="input" style="width: 25%">
+                                                    <option *ngFor="let ord of company.orderers" value="{{ord.companyID}}">{{ord.companyName}}</option>
+                                                </select>
+                                                <div *ngIf="formVirman.controls['virman'].invalid && (formVirman.controls['virman'].dirty || formVirman.controls['virman'].touched || isSubmitted)" class="alert">
+                                                    <div *ngIf="formVirman.controls['virman'].errors['required']">
+                                                        Virman je obavezno polje.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div *ngIf="displayForm != -1">
+                                <button class="button">Zatvori racun</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

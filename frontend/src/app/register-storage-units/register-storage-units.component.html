@@ -1,0 +1,30 @@
+<div class="child" [style]="style">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <label class="label">Registracija magacina: {{number}}/{{numberOfStorageUnits}}</label>
+        <hr>
+        <label class="label" for="id_accNum">Naziv magacina:</label>
+        <input id="id_accNum" type="text" formControlName="name" class="input" #input>
+        <div *ngIf="formGroup.controls['name'].invalid && (formGroup.controls['name'].dirty || formGroup.controls['name'].touched || isSubmitted)" class="alert">
+            <div *ngIf="formGroup.controls['name'].errors['required']">
+                Naziv magacina je obavezno polje.
+            </div>
+        </div>
+        <div style="padding: 15px 10px">
+            <button type="submit" class="button" style="margin: 1% 25%; background-color: darkslategrey;">Dodaj</button>
+        </div>
+    </form>  
+    <label class="label">Magacini:</label>
+    <br>
+    <div *ngIf="storageUnits.length > 0">
+        <div *ngFor="let unit of storageUnits" class="unit" >
+            <div>
+                <label class="label">Naziv magacina: {{unit.name}}</label>
+            </div>
+            <div>
+                <button class="button" style="width: 100%;" (click)="deleteUnit(unit)">Obrisi</button>
+            </div>
+        </div>
+    </div> 
+</div>
+
+

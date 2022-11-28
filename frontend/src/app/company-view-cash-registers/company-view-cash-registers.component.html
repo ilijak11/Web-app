@@ -1,0 +1,106 @@
+<div>
+    <label class="label">Objekti:</label>
+    <br>
+    <div *ngIf="company.cashRegisters.length > 0">
+        <div *ngFor="let register of company.cashRegisters" class="register" >
+            <div>
+                <label class="label">Tip: {{register.registerType}}</label>
+                <br>
+                <label class="label">Naziv objekta: {{register.storeName}}</label>
+                <br>
+                <label class="label">Adresa: </label>
+                <br>
+                <label class="label">Drzava: {{register.address.country}}</label>
+                <br>
+                <label class="label">Grad: {{register.address.city}}</label>
+                <br>
+                <label class="label">Postanski broj: {{register.address.postCode}}</label>
+                <br>
+                <label class="label">Ulica: {{register.address.street}}</label>
+                <br>
+                <label class="label">Broj: {{register.address.streetNumber}}</label>
+            </div>
+            <div>
+                <button class="button" style="width: 100%;" (click)="deleteCashRegister(register)">Obrisi</button>
+            </div>
+        </div>
+    </div> 
+    <hr>
+    <form [formGroup]="formGroup" (ngSubmit)="registerNewCashRegister()">
+        <label class="label">Registracija objekta:</label>
+        <hr>
+        <div>
+            <label class="label" for="id_type">Tip:</label>
+            <select id="id_type" formControlName="type" class="input">
+                <option *ngFor="let type of cashRegisterTypes" value="{{type}}">{{type}}</option>
+            </select>
+            <div *ngIf="formGroup.controls['type'].invalid && (formGroup.controls['type'].dirty || formGroup.controls['type'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['type'].errors['required']">
+                    Tip je obavezno polje.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label" for="id_storeName">Naziv objekta:</label>
+            <input label="id_storeName" formControlName="storeName" type="text" class="input">
+            <div *ngIf="formGroup.controls['storeName'].invalid && (formGroup.controls['storeName'].dirty || formGroup.controls['storeName'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['storeName'].errors['required']">
+                    Naziv objekta je obavezno polje.
+                </div>
+            </div>
+        </div>
+        <hr>
+        <label class="label" for="id_country">Adresa:</label>
+        <hr>
+        <div>
+            <label class="label" for="id_country">Drzava:</label>
+            <input label="id_country" formControlName="country" type="text" class="input">
+            <div *ngIf="formGroup.controls['country'].invalid && (formGroup.controls['country'].dirty || formGroup.controls['country'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['country'].errors['required']">
+                    Drzava je obavezno polje.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label" for="id_city">Grad:</label>
+            <input label="id_city" formControlName="city" type="text" class="input">
+            <div *ngIf="formGroup.controls['city'].invalid && (formGroup.controls['city'].dirty || formGroup.controls['city'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['city'].errors['required']">
+                    Grad je obavezno polje.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label" for="id_postCode">Postanski broj:</label>
+            <br>
+            <input label="id_postCode" formControlName="postCode" type="number" class="input" style="width: 25%">
+            <div *ngIf="formGroup.controls['postCode'].invalid && (formGroup.controls['postCode'].dirty || formGroup.controls['postCode'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['postCode'].errors['required']">
+                    Postanski broj je obavezno polje.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label" for="id_street">Ulica:</label>
+            <input label="id_street" formControlName="street" type="text" class="input">
+            <div *ngIf="formGroup.controls['street'].invalid && (formGroup.controls['street'].dirty || formGroup.controls['street'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['street'].errors['required']">
+                    Ulica je obavezno polje.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label" for="id_streetNum">Broj:</label>
+            <br>
+            <input label="id_streetNum" formControlName="streetNum" type="number" class="input" style="width: 25%">
+            <div *ngIf="formGroup.controls['streetNum'].invalid && (formGroup.controls['streetNum'].dirty || formGroup.controls['streetNum'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['streetNum'].errors['required']">
+                    Broj je obavezno polje.
+                </div>
+            </div>
+        </div>
+        <div style="padding: 15px 10px">
+            <button type="submit" class="button" style="margin: 1% 25%; background-color: darkslategrey;">Dodaj</button>
+        </div>
+    </form> 
+</div>

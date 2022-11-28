@@ -1,0 +1,5 @@
+
+
+Angular material: ng add @angular/material
+Chart.js: npm install chart.js
+Date Adapter za Chart.js: npm install date-fns chartjs-adapter-date-fns --save

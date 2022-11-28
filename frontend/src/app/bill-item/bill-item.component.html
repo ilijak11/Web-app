@@ -1,0 +1,50 @@
+
+<div style="background-color: cadetblue; border: 2px solid black; border-radius: 4px; margin-bottom: 10px;">
+    <div class="item">
+        <div>
+             <div class="item1">
+                 <div>
+                     <img [src]="item.imageSrc" width="50" height="50" style="border: 2px solid black" >
+                 </div>
+                 <div>
+                     <label class="label1">Sifra artikla: </label>
+                     <label class="label">{{item.id}}</label>
+                     <br>
+                     <label class="label1">Naziv artikla: </label>
+                     <label class="label">{{item.name}}</label>
+                     <br>
+                     <label class="label1">Jedinica mere: </label>
+                     <label class="label">{{item.unit}}</label>
+                 </div>
+             </div>
+             <div>
+                <button class="button" (click)="show()">Dodaj</button>
+             </div>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th class="label1">Cena</th>
+                    <th class="label1">Tekuce stanje</th>
+                    <th class="label1">Min. stanje</th>
+                    <th class="label1">Maks. stanje</th>
+                </tr>
+                <tr>
+                    <td class="label1">{{storageDescriptor.retailPrice}} RSD</td>
+                    <td class="label1" [class.red]="quantity > storageDescriptor.currentStock">{{storageDescriptor.currentStock}}</td>
+                    <td class="label1" [class.red]="storageDescriptor.currentStock - quantity < storageDescriptor.minStock">{{storageDescriptor.minStock}}</td>
+                    <td class="label1">{{storageDescriptor.maxStock}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="item2" [hidden]="!showDialog">
+            <label class="label1">&nbsp;&nbsp;Kolicina:</label>
+            <br>
+            <input type="number" name="quantity" class="input" style="width: 20%" [(ngModel)]="quantity">
+            <button class="button" style="width: 20%;" (click)="add()">Dodaj</button>
+            <button class="button" style="width: 20%;" (click)="cancel()">Otkazi</button>
+        </div>
+    </div>
+</div>

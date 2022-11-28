@@ -1,0 +1,49 @@
+<div class="grid">
+    <div class="child">
+        <label class="label">Svi proizvodi:</label>
+        <hr>
+        <label class="label">Ukupno redova: </label>
+        <br>
+        <button (click)="prev()" style="width: 20%;" class="button1">< prethodna</button>
+        <button (click)="next()" style="width: 20%;" class="button1">sledeca ></button>
+        <label class="label" > &nbsp;&nbsp;&nbsp; strana: {{currPage + 1}} - {{numPages + 1}} </label>
+        <br>
+        <br>
+        <div style="background-color: cadetblue;">
+            <table>
+                <tr>
+                    <th class="label"></th>
+                    <th class="label">Sifra artikla</th>
+                    <th class="label">Naziv artikla</th>
+                    <th class="label">Jedinica mere</th>
+                    <th class="label">Stopa poreza</th>
+                    <th class="label">Proizvodjac</th>
+                </tr>
+                <tr *ngFor="let item of showItems">
+                    <td style="background-color: white;">
+                        <img [src]="item.imageSrc" height="50" width="50">
+                    </td>
+                    <td class="label1">{{item.id}}</td>
+                    <td class="label1">{{item.name}}</td>
+                    <td class="label1">{{item.unit}}</td>
+                    <td class="label1">{{item.tax}}</td>
+                    <td class="label1">{{printManufacturer(item)}}</td>
+                    <td>
+                        <button  class="button1" style="width: 100%" (click)="deleteItem(item)">Obrisi</button>
+                    </td>
+                    <td>
+                        <button  class="button1" style="width: 100%" (click)="updateItem(item)">Izmena</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="child" [ngSwitch]="update">
+        <div *ngSwitchCase="false">
+            <app-add-item [company]="company" (itemAdded)="newItemAdded($event)"></app-add-item>
+        </div>
+        <div *ngSwitchCase="true">
+            <app-update-item [company]="company" [item]="itemToUpdate" (cancelUpdateEvent)="cancelUpdate($event)" (updatedEvent)="itemUpdated($event)"></app-update-item>
+        </div>
+    </div>
+</div>

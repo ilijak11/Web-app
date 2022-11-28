@@ -1,0 +1,209 @@
+<div>
+    <button class="button" style="margin: 5px 25%" (click)="showForm()">Unos</button>
+    <div *ngIf="toggle">  
+        <div class="select">
+            <a (click)="selectPage(1)">Opsti podaci</a>
+            <a (click)="selectPage(2)">Dopunski podaci</a>
+            <a (click)="selectPage(3)">Cene i stanje robe</a>
+        </div>
+        <div [ngSwitch]="page" class="child">
+            <form [formGroup]="formGroup">
+                <div>
+                    <div style="display: grid; grid-template-columns: 1fr 3fr;">
+                        <div>
+                            <label class="label" for="picture">Slika: </label>
+                            <input id="picture" type="file"  formControlName="picture" (change)="onFileChange($event)">
+                        </div>
+                        <div>
+                            <img [src]="imageSrc" height="100" width="100" style="border: 2px solid black">
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="1">
+                    <br>
+                    <label class="label">Opsti podaci o artiklu:</label>
+                    <hr>  
+                    <div>
+                        <label class="label" for="id_id">Sifra:</label>
+                        <br>
+                        <input id="id_id" formControlName="id" type="text" class="input" style="width: 50%">
+                        <div *ngIf="formGroup.controls['id'].invalid && (formGroup.controls['id'].dirty || formGroup.controls['id'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="formGroup.controls['id'].errors['required']">
+                                Sifra proizvoda je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_name">Naziv:</label>
+                        <br>
+                        <input id="id_name" formControlName="name" type="text" class="input" style="width: 50%">
+                        <div *ngIf="formGroup.controls['name'].invalid && (formGroup.controls['name'].dirty || formGroup.controls['name'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="formGroup.controls['name'].errors['required']">
+                                Naziv proizvoda je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_unit">Jedinica mere:</label>
+                        <br>
+                        <select id="id_tax"  formControlName="unit" class="input" style="width: 50%">
+                            <option *ngFor="let unit of units" value="{{unit}}">{{unit}}</option>
+                        </select>
+                        <div *ngIf="formGroup.controls['unit'].invalid && (formGroup.controls['unit'].dirty || formGroup.controls['unit'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="formGroup.controls['unit'].errors['required']">
+                                Jedinica mere proizvoda je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="label" for="id_tax">Poreska stopa:</label>
+                        <br>
+                        <div *ngIf="!company.PDVsystem">
+                            <select id="id_tax" type="number" formControlName="tax" class="input" style="width: 50%">
+                                <option value="0">0% bez PDV-a</option>
+                            </select>
+                        </div>
+                        <div *ngIf="company.PDVsystem">
+                            <select id="id_tax" type="number" formControlName="tax" class="input" style="width: 50%">
+                                <option value="0.2">20% opsta taksa</option>
+                                <option value="0.1">10% posebna taksa</option>
+                            </select>
+                        </div>
+                        <div *ngIf="formGroup.controls['tax'].invalid && (formGroup.controls['tax'].dirty || formGroup.controls['tax'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="formGroup.controls['tax'].errors['required']">
+                                Poreska stopa proizvoda je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="company.category == 1">
+                        <label class="label" for="id_unit">Tip artikla:</label>
+                        <br>
+                        <label class="label" for="id_drink">Pice:</label>
+                        <input id="id_drink" formControlName="productType" type="radio" value="0">
+                        <label class="label" for="id_food"> Hrana:</label>
+                        <input id="id_food" formControlName="productType" type="radio" value="1">
+                        <label class="label" for="id_material"> Sirovina: </label>
+                        <input id="id_material" formControlName="productType" type="radio" value="2">
+                        <div *ngIf="formGroup.controls['productType'].invalid && (formGroup.controls['productType'].dirty || formGroup.controls['productType'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="formGroup.controls['productType'].errors['required']">
+                                Tip proizvoda je obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="2">
+                    <br>
+                    <label class="label">Dopunski podaci o artiklu:</label>
+                    <hr>
+                    <div>
+                        <label class="label" for="id_originCountry">Zemlja porekla:</label>
+                        <br>
+                        <input id="id_originCountry" formControlName="originCountry" type="text" class="input" style="width: 50%">
+                    </div>
+                    <div>
+                        <label class="label" for="id_foreignName">Strani naziv:</label>
+                        <br>
+                        <input id="id_foreignName" formControlName="foreignName" type="text" class="input" style="width: 50%">
+                    </div>
+                    <div>
+                        <label class="label" for="id_barcode">Barkod:</label>
+                        <br>
+                        <input id="id_barcode" formControlName="barcode" type="number" class="input" style="width: 50%">
+                    </div>
+                    <div>
+                        <label class="label" for="id_manufacturer">Naziv proizvodjaca:</label>
+                        <br>
+                        <input id="id_manufacturer" formControlName="manufacturer" type="text" class="input" style="width: 50%">
+                    </div>
+                    <div>
+                        <label class="label" for="id_customsTariff">Carinska tarifa:</label>
+                        <br>
+                        <input id="id_customsTariff" formControlName="customsTariff" type="number" class="input" style="width: 50%">
+                    </div>
+                    <div>
+                        <label class="label" for="id_ecoTax">Eko taksa:</label>
+                        <input id="id_ecoTax" formControlName="ecoTax" type="checkbox" value="true">
+                    </div>
+                    <div>
+                        <label class="label" for="id_exciseTax">Akcize:</label>
+                        <input id="id_exciseTax" formControlName="exciseTax" type="checkbox" value="true">
+                    </div>
+                    <div>
+                        <label class="label" for="id_minStock">Minimalne zalihe:</label>
+                        <br>
+                        <input id="id_minStock" formControlName="minStock" type="number" class="input" style="width: 50%">
+                    </div>
+                    <div>
+                        <label class="label" for="id_maxStock">Maksimalne zalihe:</label>
+                        <br>
+                        <input id="id_maxStock" formControlName="maxStock" type="number" class="input" style="width: 50%">
+                    </div>
+                    <div>
+                        <label class="label" for="id_description">Opis:</label>
+                        <br>
+                        <textarea id="id_description" formControlName="description" class="input" >
+                        </textarea>
+                    </div>
+                    <div>
+                        <label class="label" for="id_declaration">Deklaracija:</label>
+                        <br>
+                        <textarea id="id_declaration" formControlName="declaration" class="input" >
+                        </textarea>
+                    </div>
+                </div>
+            </form>
+            <div *ngSwitchCase="3">
+                <label class="label">Magacini:</label>
+                <hr>
+                <div style="background-color: cadetblue; ">
+                    <table>
+                        <tr>
+                            <th class="label">Tip</th>
+                            <th class="label">ID</th>
+                            <th class="label">Naziv</th>
+                            <th class="label">Nabavna cena</th>
+                            <th class="label">Prodajna cena</th>
+                            <th class="label">Tekuce stanje lagera</th>
+                            <th class="label">Minimalna kolicina</th>
+                            <th class="label">Maksimalna kolicina</th>
+                        </tr>
+                        <tr *ngFor="let storage of storageArr">
+                            <td class="label">{{storageType(storage)}}</td>
+                            <td class="label">{{storage.id}}</td>
+                            <td class="label">{{storage.name}}</td>
+                            <td>
+                                <input type="number" name="purchasePrice" [(ngModel)]="storage.purchasePrice"  style="width: 75%">RSD
+                            </td>
+                            <td>
+                                <input type="number" name="retailPrice" [(ngModel)]="storage.retailPrice"  style="width: 75%">RSD
+                            </td>
+                            <td>
+                                <input type="number" name="currStock" [(ngModel)]="storage.currentStock"  style="width: 75%">
+                            </td>
+                            <td>
+                                <input type="number" name="minStock" [(ngModel)]="storage.minStock"  style="width: 75%">
+                            </td>
+                            <td>
+                                <input type="number" name="maxStock" [(ngModel)]="storage.maxStock"  style="width: 75%">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div *ngIf="formGroup.invalid && isSubmitted" class="alert">
+                Nisu uneti svi obavezni podaci
+            </div>
+            <div *ngIf="tooFewStock" class="alert">
+                Unete kolicine po objektima su manje od minimalne zelje kolicine
+            </div>
+            <div *ngIf="tooMuchStock" class="alert">
+                Unete kolicine po objektima su vece od maksimalne zelje kolicine
+            </div>
+            <br>
+            <button class="button" (click)="onSubmit()">Dodaj artikal</button>
+            <button class="button" style="background-color: olive;" (click)="resetForm()">Resetuj</button>
+        </div>
+    </div>
+</div>

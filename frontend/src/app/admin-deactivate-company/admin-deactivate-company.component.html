@@ -1,0 +1,43 @@
+<div class="request">
+    <div class="img">
+        <img [src]="company.imageSrc" height="100" width="100" style="border: 2px solid black">
+    </div>
+    <div class="border">
+        <label class="label">Odgovorno lice:</label>
+        <hr>
+        Ime: <label class="label">{{company.firstname}}</label>
+        <br>
+        Prezime: <label class="label">{{company.lastname}}</label>
+        <br>
+        Korisnicko ime: <label class="label">{{company.username}}</label>
+        <br>
+        Telefon: <label class="label">{{company.phone}}</label>
+        <br>
+        E-mail: <label class="label">{{company.email}}</label>
+    </div>
+    <div class="border">
+        <label class="label">Informacije o preduzecu:</label>
+        <hr>
+        Ime preduzeca: <label class="label">{{company.companyName}}</label>
+        <br>
+        Maticni broj: <label class="label">{{company.companyID}}</label>
+        <br>
+        PIB: <label class="label">{{company.pib}}</label>
+    </div>
+    <div class="border">
+        <label class="label">Adresa:</label>
+        <hr>
+        Drzava: <label class="label">{{company.address.country}}</label>
+        <br>
+        Grad: <label class="label">{{company.address.city}}</label>
+        <br>
+        Postanski broj: <label class="label">{{company.address.postCode}}</label>
+        <br>
+        Ulica: <label class="label">{{company.address.street}}</label>
+        <br>
+        Broj: <label class="label">{{company.address.streetNumber}}</label>
+    </div>
+    <div>
+        <button class="button" (click)="deactivate()" style="width: 100%; margin: 20% 0; background-color: red;">Deaktiviraj</button>
+    </div>
+</div>

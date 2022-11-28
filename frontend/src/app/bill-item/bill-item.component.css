@@ -1,0 +1,26 @@
+.item{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: cadetblue;
+}
+
+.item1{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: cadetblue;
+}
+
+.item2{
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: lightslategray;
+    padding: 10px 10px;
+}
+
+.red{
+    background-color: salmon;
+}

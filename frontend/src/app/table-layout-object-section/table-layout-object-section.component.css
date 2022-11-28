@@ -1,0 +1,15 @@
+.dialog{
+    border: 3px solid black;
+    border-radius: 4px;
+    background-color: cadetblue;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
+
+.section{
+    border: 3px solid black;
+    border-radius: 4px;
+    background-color: cadetblue;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}

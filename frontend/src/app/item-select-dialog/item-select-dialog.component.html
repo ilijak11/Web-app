@@ -1,0 +1,40 @@
+<div mat-dialog-content class="content">
+    <div class="child">
+        <button class="button" (click)="closeDialog()">Zatvori</button>
+        <hr>
+        <label class="label" for="srch">Pretraga artikala: </label>
+        <hr>
+        <div>
+            <form>
+                <div class="grid" style="grid-template-columns: 3fr 1fr;">
+                    <div>
+                        <input id="srch" type="text" class="input" name="srch" [(ngModel)]="searchParam" placeholder="Unesite ime artikla...">
+
+                    </div>
+                    <div>
+                        <button class="button" style="width: 100%;" (click)="search()">Pretraga</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="background-color: white;">
+        <div style="background-color: cadetblue;">
+            <table>
+                <tr>
+                    <th class="label">Sifra artikla</th>
+                    <th class="label">Naziv artikla</th>
+                    <th class="label">Prozivodjac</th>
+                </tr>
+                <tr *ngFor="let item of showItems">
+                    <td class="label">{{item.id}}</td>
+                    <td class="label">{{item.name}}</td>
+                    <td class="label">{{printManufacturer(item)}}</td>
+                    <td>
+                        <button class="button" style="width: 100%;" (click)="selectItem(item)">Dodeli proizvod</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

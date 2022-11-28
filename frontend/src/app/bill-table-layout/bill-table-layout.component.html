@@ -1,0 +1,13 @@
+<div class="child">
+    <label class="label">Objekat: {{object.storeName}}</label>
+    <hr>
+    <div>
+        <div style="display: flex; flex-direction: row;">
+            <div *ngFor="let section of object.sections">
+                <div>
+                    <app-bill-table-layout-section [section]="section" [change]="changeNum" (openBillEvent)="openBill($event)"></app-bill-table-layout-section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

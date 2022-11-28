@@ -1,0 +1,44 @@
+<div class="child" [style]="style">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <label class="label">Registracija ziro racuna:</label>
+        <hr>
+        <label class="label" for="id_accNum">Ziro racun:</label>
+        <input id="id_accNum" type="text" formControlName="accountNumber" class="input" #input>
+        <div *ngIf="formGroup.controls['accountNumber'].invalid && (formGroup.controls['accountNumber'].dirty || formGroup.controls['accountNumber'].touched || isSubmitted)" class="alert">
+            <div *ngIf="formGroup.controls['accountNumber'].errors['required']">
+                Broj racuna je obavezno polje.
+            </div>
+            <div *ngIf="formGroup.controls['accountNumber'].errors['pattern']">
+                Neadekvatan broj racuna.
+                Format: 123-123456789123-12
+            </div>
+        </div>
+        <label class="label" for="id_bank">Banka:</label>
+        <select id="id_bank" formControlName="bank" class="input">
+            <option *ngFor="let bank of banks" value="{{bank}}">{{bank}}</option>
+        </select>
+        <div *ngIf="formGroup.controls['bank'].invalid && (formGroup.controls['bank'].dirty || formGroup.controls['bank'].touched || isSubmitted)" class="alert">
+            <div *ngIf="formGroup.controls['bank'].errors['required']">
+                Banka je obavezno polje.
+            </div>
+        </div>
+        <div style="padding: 15px 10px">
+            <button type="submit" class="button" style="margin: 1% 25%; background-color: darkslategrey;">Dodaj racun</button>
+        </div>
+    </form>  
+    <label class="label">Racuni:</label>
+    <br>
+    <div *ngIf="accounts.length > 0">
+        <div *ngFor="let account of accounts" class="account" >
+            <div>
+                <label class="label">Ziro racun: {{account.accountNumber}}</label>
+                <br>
+                <label class="label">Banka: {{account.bank}}</label>
+            </div>
+            <div>
+                <button class="button" style="width: 100%;" (click)="deleteAccount(account)">Obrisi</button>
+            </div>
+        </div>
+    </div> 
+</div>
+

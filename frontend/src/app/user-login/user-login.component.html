@@ -1,0 +1,42 @@
+<div class="child" [style]="loginErrorStyle">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label class="label" for="id_username">Prijava:</label>
+        <hr/>
+        <div>
+            <label class="label" for="id_username">Korisnicko Ime:</label>
+            <input id="id_username" type="text" formControlName="username" class="input">
+            <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched || isSubmitted)" class="alert">
+                <div *ngIf="loginForm.controls['username'].errors['required']">
+                    Korisnicko ime je obavezno.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label" for="id_password">Lozinka:</label>
+            <input id="id_password" type="password" formControlName="password" class="input">
+            <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched || isSubmitted)" class="alert">
+                <div *ngIf="loginForm.controls['password'].errors['required']">
+                    Lozinka je obavezna.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="label">Tip:</label>
+            <br>
+            <label class="label" for="id_type_user">Korisnik:</label>
+            <input id="id_type_user" type="radio" formControlName="type" value="0">
+            <br>
+            <label class="label" for="id_type_company">Preduzece:</label>
+            <input id="id_type_company" type="radio" formControlName="type" value="1">
+            <div *ngIf="loginForm.controls['type'].invalid && (loginForm.controls['type'].dirty || loginForm.controls['type'].touched || isSubmitted)" class="alert">
+                <div *ngIf="loginForm.controls['type'].errors['required']">
+                    Tip je obavezan
+                </div>
+            </div>
+        </div>
+        <button class="button" style="margin: 20px 25%" type="submit">Prijava</button>
+        <div *ngIf="loginError" class="error-message">
+            {{message}}
+        </div>
+    </form>
+</div>

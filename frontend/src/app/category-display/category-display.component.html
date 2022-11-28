@@ -1,0 +1,29 @@
+<div class="category">
+    <label class="label">Kategorija: {{category.category}}</label>
+    <hr>
+    <div style="background-color: cadetblue;" *ngIf="categoryItems.length">
+        <table>
+            <tr>
+                <th></th>
+                <th class="label1">Sifra artikla</th>
+                <th class="label1">Naziv artikla</th>
+                <th class="label1">Prozivodjac</th>
+            </tr>
+            <tr *ngFor="let item of categoryItems">
+                <td>
+                    <img [src]="item.imageSrc" width="50" height="50">
+                </td>
+                <td class="label1">{{item.id}}</td>
+                <td class="label1">{{item.name}}</td>
+                <td class="label1">{{printManufacturer(item)}}</td>
+            </tr>
+        </table>
+    </div>
+    <div  *ngIf="!categoryItems.length">
+        <label class="label">Nema artikala u kategoriji</label>
+    </div>
+    <hr>
+    <div *ngFor="let subCategory of category.subCategories">
+        <app-sub-category-display [subCategory]="subCategory" [categoryItems]="filteredItems"></app-sub-category-display>
+    </div>
+</div>

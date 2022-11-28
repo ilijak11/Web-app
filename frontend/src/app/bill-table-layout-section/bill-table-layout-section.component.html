@@ -1,0 +1,24 @@
+<div class="section">
+    <label class="label">{{section.name}}</label>
+    <hr>
+    <div style="display: grid; grid-template-columns: 4fr 2fr;">
+        <div>
+            <canvas id="canvas" [height]="section.height" [width]="section.width" style="background-color: white; border: 2px solid black;" #canvas>
+            
+            </canvas>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                </tr>
+                <tr *ngFor="let table of section.tables">
+                    <td class="label1">{{table.id}}</td>
+                    <td>
+                        <button class="button" style="width: 100%" (click)="openBill(table)">Otvori racun</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

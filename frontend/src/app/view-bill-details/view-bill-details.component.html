@@ -1,0 +1,131 @@
+<div class="bill">
+    <div class="grid">
+        <div class="grid1">
+            <div [ngSwitch]="bill.paymentMethod" class="info">
+                <div *ngSwitchCase="0">
+                    <label class="label1">Nacin placanja: </label>
+                    <label class="label"> Gotovina</label>
+                    <br>
+                    <label class="label1">Broj licne karte: </label>
+                    <label class="label">{{bill.userID}}</label>
+                    <br>
+                    <label class="label1">Uplaceno: </label>
+                    <label class="label">{{bill.userPaid}} RSD</label>
+                    <br>
+                    <label class="label1">Kusur: </label>
+                    <label class="label">{{bill.userChange}} RSD</label>
+                </div>
+                <div *ngSwitchCase="1">
+                    <label class="label1">Nacin placanja: </label>
+                    <label class="label"> Cek</label>
+                    <br>
+                    <label class="label1">Broj licne karte: </label>
+                    <label class="label">{{bill.userID}}</label>
+                    <br>
+                    <label class="label1">Ime: </label>
+                    <label class="label">{{bill.userFirstname}}</label>
+                    <br>
+                    <label class="label1">Prezime: </label>
+                    <label class="label">{{bill.userLastname}}</label>
+                </div>
+                <div *ngSwitchCase="2">
+                    <label class="label1">Nacin placanja: </label>
+                    <label class="label"> Kartica</label>
+                    <br>
+                    <label class="label1">Broj licne karte: </label>
+                    <label class="label">{{bill.userID}}</label>
+                    <br>
+                    <label class="label1">Broj slip racuna: </label>
+                    <label class="label">{{bill.billNumber}}</label>
+                </div>
+                <div *ngSwitchCase="3">
+                    <label class="label1">Nacin placanja: </label>
+                    <label class="label"> Virman</label>
+                    <br>
+                    <label class="label1">Maticni broj firme: </label>
+                    <label class="label">{{bill.virmanCompanyID}}</label>
+                    <br>
+                    <label class="label1">Rabat: </label>
+                    <label class="label">{{bill.discount}}</label>
+                    <br>
+                    <label class="label1">Rok za placanje: </label>
+                    <label class="label">{{bill.paymentDeadline}}</label>
+                </div>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <label class="label1">Preduzece: </label>
+                        </td>
+                        <td>
+                            <label class="label">{{bill.companyName}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="label1">Objekat: </label>
+                        </td>
+                        <td>
+                            <label class="label">{{bill.objectName}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="label1">Datum: </label>
+                        </td>
+                        <td>
+                            <label class="label">{{printDate()}}</label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td class="label1">Osnovica</td>
+                        <td class="label1">{{bill.basePrice | number}} RSD</td>
+                    </tr>
+                    <tr>
+                        <td class="label1">Porez</td>
+                        <td class="label1">{{bill.price - bill.basePrice | number}} RSD</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Ukupno</td>
+                        <td class="label">{{bill.price | number}} RSD</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <button class="button" style="width: 100%" (click)="showDetails()">Detalji</button>
+        </div>
+    </div>
+    <div *ngIf="details">
+        <hr>
+        <label class="label">Stavke: </label>
+        <br>
+        <table>
+            <tr>
+                <th>Proizvod</th>
+                <th>Kolicina</th>
+                <th>Jedinica</th>
+                <th>Cena po jedinici</th>
+                <th>Osnovica</th>
+                <th>PDV </th>
+                <th>PDV (Novcano)</th>
+                <th>Cena</th>
+            </tr>
+            <tr *ngFor="let billItem of bill.items">
+                <td class="label1">{{billItem.itemName}}</td>
+                <td class="label1">{{billItem.itemQuantity}}</td>
+                <td class="label1">{{billItem.itemUnit}}</td>
+                <td class="label1">{{billItem.basePrice/billItem.itemQuantity}}</td>
+                <td class="label1">{{billItem.basePrice}}</td>
+                <td class="label1">{{billItem.itemTax*100}}%</td>
+                <td class="label1">{{billItem.itemTax*billItem.basePrice}}</td>
+                <td class="label1">{{billItem.price}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

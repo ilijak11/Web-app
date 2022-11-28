@@ -1,0 +1,29 @@
+.request{
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+    border: 2px solid black;
+    background-color: salmon;
+    border-radius: 4px;
+    padding: 5px 5px;
+    margin: 5px 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.border{
+    border: 2px solid black;
+    background-color: salmon;
+    border-radius: 4px;
+    padding: 5px 5px;
+    margin: 5px 5px;
+}
+
+.img{
+    background-color: salmon;
+    padding: 5px 0px;
+}
+
+.label{
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}

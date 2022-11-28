@@ -1,0 +1,38 @@
+<div>
+    <header style="background-color: orange;">
+        <a routerLink="/admin/register-user">Registracija novog kupca</a>
+        <a routerLink="/admin/register-company">Registracija novog preduzeca</a>
+        <a routerLink="/admin/report">Pregled izvestaja</a>
+        <button class="button" style="background-color: red; width: 20%;" (click)="logout()">Kraj rada</button>
+        <button class="button" style="width: 20%;" (click)="changePassword()">Promena lozinke</button>
+    </header>
+    <div class="container">
+        <div>
+            <div class="child" style="background-color: orange;">
+                <div *ngIf="registerRequests">
+                    <label class="label" style="margin: 50% 0">Zahtevi za registraciju:</label>
+                    <hr>
+                    <div *ngFor="let request of registerRequests">
+                        <app-register-request [request]="request" (event)="processRequest($event)"></app-register-request>
+                    </div>
+                </div>
+                <div *ngIf="!registerRequests">
+                    <label class="label" style="margin: 50% 0">Nema novih zahteva za registraciju</label>
+                </div>
+            </div>
+            <div class="child"  style="background-color: orange;">
+                <div *ngIf="allCompanies">
+                    <label class="label" style="margin: 50% 0">Aktivne firme:</label>
+                    <hr>
+                    <div *ngFor="let company of allCompanies">
+                        <app-admin-deactivate-company [company]="company" (companyDeactivated)="companyDeactivated()"></app-admin-deactivate-company>
+                    </div>
+                </div>  
+                <div *ngIf="!allCompanies">
+                    <label class="label" style="margin: 50% 0">Nema aktivnih firmi</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

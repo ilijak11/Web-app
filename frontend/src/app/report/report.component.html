@@ -1,0 +1,51 @@
+<div class="child" style="width: 800px">
+    <div class="select">
+        <a (click)="changeView(1)">Izvestaj dnevnog pazara</a>
+        <a (click)="changeView(2)">Izvestaj po stavkama</a>
+    </div>
+    <div [ngSwitch]="page">
+        <hr>
+        <div *ngSwitchCase="1">
+            <div>
+                <label class="label">Izvestaj za dan: </label>
+                <br>
+                <input type="date" name="date" class="input" style="width: 20%;" [(ngModel)]="date" (change)="getReport()">
+                <hr>
+                <br>
+                <div *ngIf="report">
+                    <label class="label">Datum: {{date}}</label>
+                    <br>
+                    <table>
+                        <tr>
+                            <td class="label">Osnovica:</td>
+                            <td class="label">{{report.base}} RSD</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Porez:</td>
+                            <td class="label">{{report.tax}} RSD</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Dnevni pazar:</td>
+                            <td class="label">{{report.total}} RSD</td>
+                        </tr>
+                    </table>
+                </div>
+                <div *ngIf="!report">
+                    Nema racuna 
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="2">
+            <label class="label">Svi racuni: </label>
+            <hr>
+            <div *ngIf="allBills">
+                <div *ngFor="let bill of allBills">
+                    <app-view-bill-details [bill]="bill"></app-view-bill-details>
+                </div>
+            </div>
+            <div *ngIf="!allBills">
+                Nema racuna
+            </div>
+        </div>
+    </div>
+</div>

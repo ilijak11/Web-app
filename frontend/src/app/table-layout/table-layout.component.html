@@ -1,0 +1,5 @@
+<div class="container">
+    <div *ngFor="let object of company.cashRegisters">
+        <app-table-layout-object [object]="object" (objectEvent)="objectEvent($event)"></app-table-layout-object>
+    </div>
+</div>

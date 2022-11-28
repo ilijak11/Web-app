@@ -1,0 +1,54 @@
+<div>
+    <div style="display: grid; grid-template-columns: 6fr 1fr; background-color: cadetblue;">
+        <div style="display: grid; grid-template-columns: 1fr 10fr;">
+            <img [src]="company.imageSrc" height="75" width="75" style="border: 2px solid black">
+            <div>
+                <label class="label">Preduzece: {{company.companyName}}</label>
+            </div>
+        </div>
+        <div>
+            <button class="button" style="background-color: red; width: 100%;" (click)="logout()">Kraj rada</button>
+            <br>
+            <button class="button" style="width: 100%;" (click)="changePassword()">Promena lozinke</button>
+        </div>
+    </div>
+    <header>
+        <a (click)="gotoPage(1)" >Robe i usluge</a>
+        <a (click)="gotoPage(2)" >Informacije o preduzecu</a>
+        <a (click)="gotoPage(3)" >Narucioci</a>
+        <a (click)="gotoPage(4)">Raspored artikala</a>
+        <a *ngIf="company.category == 1" (click)="gotoPage(5)">Raspored stolova</a>
+        <a (click)="gotoPage(6)">Izdavanje racuna</a>
+        <a (click)="gotoPage(7)">Pregled izvestaja</a>      
+    </header>
+    <div class="container" [ngSwitch]="page">
+        <div *ngSwitchCase="1">
+            <app-items-and-services [company]="company"></app-items-and-services>
+        </div>
+        <div *ngSwitchCase="2">
+            <app-company-view-information [company]="company"></app-company-view-information>
+        </div>
+        <div *ngSwitchCase="3">
+            <app-orderers [company]="company"></app-orderers>
+        </div>
+        <div *ngSwitchCase="4">
+            <app-item-category [company]="company"></app-item-category>
+        </div>
+        <div *ngSwitchCase="5">
+            <app-table-layout [company]="company" (changeEvent)="refresh()"></app-table-layout>
+        </div>
+        <div *ngSwitchCase="6">
+            <div [ngSwitch]="company.category">
+                <div *ngSwitchCase="0">
+                    <app-bill [company]="company"></app-bill>
+                </div>
+                <div *ngSwitchCase="1">
+                    <app-bill-restaurant [company]="company"></app-bill-restaurant>
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="7">
+            <app-report [company]="company"></app-report>
+        </div>
+    </div>
+</div>

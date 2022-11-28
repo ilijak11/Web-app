@@ -1,0 +1,48 @@
+<div class="child">
+    <label class="label">Objekat: {{object.storeName}} </label>
+    <hr>
+    <button class="button" (click)="toggle()" style="width: 25%">Dodaj novu sekciju</button>
+    <div *ngIf="showForm" class="dialog">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <label class="label1" for="id_name">Naziv sekcije:</label>
+            <br>
+            <input id="id_name" type="text" formControlName="name" class="input" style="width: 50%">
+            <div *ngIf="formGroup.controls['name'].invalid && (formGroup.controls['name'].dirty || formGroup.controls['name'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['name'].errors['required']">
+                    Naziv sekcije je obavezno polje.
+                </div>
+            </div>
+            <br>
+            <label class="label1" for="id_height">Visina: (px)</label>
+            <br>
+            <input id="id_height" type="number" formControlName="height" class="input" style="width: 50%">
+            <div *ngIf="formGroup.controls['height'].invalid && (formGroup.controls['height'].dirty || formGroup.controls['height'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['height'].errors['required']">
+                   Visina je obavezno polje.
+                </div>
+            </div>
+            <br>
+            <label class="label1" for="id_width">Sirina: (px)</label>
+            <br>
+            <input id="id_width" type="number" formControlName="width" class="input" style="width: 50%">
+            <div *ngIf="formGroup.controls['width'].invalid && (formGroup.controls['width'].dirty || formGroup.controls['width'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['width'].errors['required']">
+                    Visina je obavezno polje.
+                </div>
+            </div>
+            <div>
+                <button class="button" type="submit">Dodaj</button>
+                <button class="button" (click)="toggle()">Odustani</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div style="display: flex; flex-direction: row;">
+        <div *ngFor="let section of object.sections">
+            <div>
+                <app-table-layout-object-section [section]="section" [object]="object" (tableEvent)="tableEvent($event)"></app-table-layout-object-section>
+            </div>
+        </div>
+    </div>
+</div>
+

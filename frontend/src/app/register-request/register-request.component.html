@@ -1,0 +1,45 @@
+<div class="request">
+    <div class="img">
+        <img [src]="request.imageSrc" height="100" width="100" style="border: 2px solid black">
+    </div>
+    <div class="border">
+        <label class="label">Odgovorno lice:</label>
+        <hr>
+        Ime: <label class="label">{{request.firstname}}</label>
+        <br>
+        Prezime: <label class="label">{{request.lastname}}</label>
+        <br>
+        Korisnicko ime: <label class="label">{{request.username}}</label>
+        <br>
+        Telefon: <label class="label">{{request.phone}}</label>
+        <br>
+        E-mail: <label class="label">{{request.email}}</label>
+    </div>
+    <div class="border">
+        <label class="label">Informacije o preduzecu:</label>
+        <hr>
+        Ime preduzeca: <label class="label">{{request.companyName}}</label>
+        <br>
+        Maticni broj: <label class="label">{{request.companyID}}</label>
+        <br>
+        PIB: <label class="label">{{request.pib}}</label>
+    </div>
+    <div class="border">
+        <label class="label">Adresa:</label>
+        <hr>
+        Drzava: <label class="label">{{request.address.country}}</label>
+        <br>
+        Grad: <label class="label">{{request.address.city}}</label>
+        <br>
+        Postanski broj: <label class="label">{{request.address.postCode}}</label>
+        <br>
+        Ulica: <label class="label">{{request.address.street}}</label>
+        <br>
+        Broj: <label class="label">{{request.address.streetNumber}}</label>
+    </div>
+    <div>
+        <button class="button" (click)="accept()" style="width: 100%; margin: 20% 0">Prihvati</button>
+        <br>
+        <button class="button" (click)="decline()" style="width: 100%">Odbij</button>
+    </div>
+</div>

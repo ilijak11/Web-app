@@ -1,0 +1,17 @@
+.company{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    border: 4px solid black;
+    border-radius: 4px;
+    background-color: cadetblue;
+    padding: 10px 10px;
+}
+
+.orderer{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    border: 4px solid black;
+    border-radius: 4px;
+    background-color: cadetblue;
+    padding: 10px 10px;
+}

@@ -1,0 +1,99 @@
+<div class="section">
+    <label class="label">{{section.name}}</label>
+    <br>
+    <button class="button" (click)="toggle()">Dodaj sto</button>
+    <button class="button" (click)="deleteSection()">Obrisi sekciju</button>
+    <div *ngIf="showDialog" class="dialog">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <label class="label1" for="id_id">ID stola:</label>
+            <br>
+            <input id="id_id" type="text" formControlName="id" class="input" style="width: 50%">
+            <div *ngIf="formGroup.controls['id'].invalid && (formGroup.controls['id'].dirty || formGroup.controls['id'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['id'].errors['required']">
+                    ID stola je obavezno polje.
+                </div>
+            </div>
+            <br>
+            <label class="label1" for="id_id">Oblik:</label>
+            <br>
+            <select id="id_id" formControlName="shape" class="input" style="width: 50%">
+                <option value="0">Okrugli</option>
+                <option value="1">Pravougaoni</option>
+            </select>
+            <div *ngIf="formGroup.controls['shape'].invalid && (formGroup.controls['shape'].dirty || formGroup.controls['shape'].touched || isSubmitted)" class="alert">
+                <div *ngIf="formGroup.controls['shape'].errors['required']">
+                    Oblik je obavezno polje.
+                </div>
+            </div>
+            <br>
+            <div *ngIf="formGroup.controls['shape'].dirty">
+                <div [ngSwitch]="formGroup.controls['shape'].value">
+                    <div *ngSwitchCase="0">
+                        <label class="label1" for="id_radius">Poluprecnik: (px)</label>
+                        <br>
+                        <input id="id_radius" type="number" formControlName="radius" class="input" style="width: 50%">
+                        <div *ngIf="formGroup.controls['radius'].invalid && (formGroup.controls['radius'].dirty || formGroup.controls['radius'].touched || isSubmitted)" class="alert">
+                            <div *ngIf="formGroup.controls['radius'].errors['required']">
+                                Poluprecnik obavezno polje.
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="1">
+                        <div>
+                            <label class="label1" for="id_width">Sirina: (px)</label>
+                            <br>
+                            <input id="id_width" type="number" formControlName="width" class="input" style="width: 50%">
+                            <div *ngIf="formGroup.controls['width'].invalid && (formGroup.controls['width'].dirty || formGroup.controls['width'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="formGroup.controls['width'].errors['required']">
+                                    Sirina obavezno polje.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label1" for="id_height">Visina: (px)</label>
+                            <br>
+                            <input id="id_height" type="number" formControlName="height" class="input" style="width: 50%">
+                            <div *ngIf="formGroup.controls['height'].invalid && (formGroup.controls['height'].dirty || formGroup.controls['height'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="formGroup.controls['height'].errors['required']">
+                                    Visina obavezno polje.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="button" type="submit">Dodaj</button>
+                        <button class="button" (click)="toggle()">Odustani</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div style="display: grid; grid-template-columns: 4fr 2fr;">
+        <div>
+            <div *ngIf="table">
+                <label class="label1">Misem odaberite poziciju na kanvasu</label>
+                <div *ngIf="update">
+                    <button class="button" (click)="cancelUpdate()" style="width: 20%;">Otkazi</button>
+                </div>
+            </div>
+            <canvas (mousedown)="drawTableAtPosition($event)" id="canvas" [height]="section.height" [width]="section.width" style="background-color: white; border: 2px solid black;" #canvas>
+        
+            </canvas>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                </tr>
+                <tr *ngFor="let table of section.tables">
+                    <td class="label1">{{table.id}}</td>
+                    <td>
+                        <button class="button" style="width: 100%" (click)="deleteTable(table)">Obrisi</button>
+                        <button class="button" style="width: 100%" (click)="moveTable(table)">Pomeri</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

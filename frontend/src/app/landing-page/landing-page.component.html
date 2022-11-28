@@ -1,0 +1,29 @@
+<div>
+    <header>
+        <a href="#login">Prijava</a>
+        <a href="#register">Registracija preduzeca</a>
+    </header>
+    <div class="container">
+        <div>
+            <h2>Racuni: </h2>
+            <div class="child">
+                <div *ngIf="showBills">
+                    <div *ngFor="let bill of showBills">
+                        <app-view-bill-details [bill]="bill"></app-view-bill-details>
+                    </div>
+                </div>
+                <div *ngIf="!allBills">
+                    Nema racuna
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Prijava:</h2>
+            <app-user-login id="login"></app-user-login>
+        </div>
+        <div>
+            <h2>Registracija preduzeca:</h2>
+            <app-register-company id="register"></app-register-company>
+        </div>
+    </div>
+</div>

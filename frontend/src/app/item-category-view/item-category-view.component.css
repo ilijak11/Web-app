@@ -1,0 +1,15 @@
+.category{
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: cadetblue;
+    margin: 10px 10px;
+}
+
+.subcategory{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 5px;
+    background-color: cadetblue;
+}

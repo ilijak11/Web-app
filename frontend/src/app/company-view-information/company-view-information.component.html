@@ -1,0 +1,344 @@
+
+<div class="child">
+    <div class="select">
+        <a (click)="changeView(1)">Informacije o preduzecu</a>
+        <a (click)="changeView(2)">Ziro racuni</a>
+        <a (click)="changeView(3)">Magacini</a>
+        <a (click)="changeView(4)">Objekti</a>
+    </div>
+    <div [ngSwitch]="displayView">
+        <div *ngSwitchCase="1">
+            <form [formGroup]="formGroup">
+                <br>
+                <label class="label">Opste informacije:</label>
+                <div id="company-info" class="section">
+                    <div class="item">
+                        <label class="label">Logo: </label>
+                        <br>
+                        <img [src]="company.imageSrc" width="50" height="50" style="border: 2px solid black;">
+                        <br>
+                        <button style="width: 20%" (click)="change(15)">izmeni</button>
+                        <div *ngIf="changeElem == 15">
+                            <input type="file" formControlName="picture" (change)="onFileChange($event)">
+                            <div *ngIf="formGroup.controls['picture'].invalid && (formGroup.controls['picture'].dirty || formGroup.controls['picture'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['picture'].errors['required']">
+                                    Niste odabrali sliku.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['picture'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Ime preduzeca:</label>
+                        <br>
+                        <span>{{company.companyName}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(1)">izmeni</button>
+                        <div *ngIf="changeElem == 1">
+                            <input type="text" formControlName="companyName" class="input">
+                            <div *ngIf="formGroup.controls['companyName'].invalid && (formGroup.controls['companyName'].dirty || formGroup.controls['companyName'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['companyName'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['companyName'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Maticni broj preduzeca:</label>
+                        <br>
+                        <span>{{company.companyID}}</span>
+                    </div>
+                    <div class="item">
+                        <label class="label">PIB:</label>
+                        <br>
+                        <span>{{company.pib}}</span>
+                    </div>
+                    <div class="item">
+                        <label class="label">Kategorija preduzeca:</label>
+                        <br>
+                        <span>{{category()}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(2)">izmeni</button>
+                        <div *ngIf="changeElem == 2">
+                            <select  formControlName="category">
+                                <option value="0">Prodavnica</option>
+                                <option value="1">Ugostiteljski objekat</option>
+                            </select>
+                            <div *ngIf="formGroup.controls['category'].invalid && (formGroup.controls['category'].dirty || formGroup.controls['category'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['category'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['category'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Sifra(e) delatnosti:</label>
+                        <ul>
+                            <li *ngFor="let code of company.activityCodes">{{code}}</li>
+                        </ul>
+                        <br>
+                        <button style="width: 20%" (click)="change(3)">izmeni</button>
+                        <div *ngIf="changeElem == 3">
+                            <select multiple id="id_activityCodes" formControlName="activityCodes" class="input">
+                                <option *ngFor="let code of codes">{{code}}</option>
+                            </select>
+                            <div *ngIf="formGroup.controls['activityCodes'].invalid && (formGroup.controls['activityCodes'].dirty || formGroup.controls['activityCodes'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['activityCodes'].errors['required']">
+                                    Nista odabrali sifru delatnosti
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['activityCodes'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">U PDV sistemu:</label>
+                        <br>
+                        <span>{{PDVsystem()}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(4)">izmeni</button>
+                        <div *ngIf="changeElem == 4">
+                            <label for="yes">Da: </label> <input id="yes" type="checkbox" formControlName="PDVsystem" value="true">
+                            <br>
+                            <label for="no">Ne: </label><input id="no" type="checkbox" formControlName="PDVsystem" value="false">
+                            <div *ngIf="formGroup.controls['PDVsystem'].invalid && (formGroup.controls['PDVsystem'].dirty || formGroup.controls['PDVsystem'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['PDVsystem'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <br>
+                            <div *ngIf="!formGroup.controls['PDVsystem'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <label class="label">Adresa:</label>
+                <div id="company-addres" class="section">
+                    <div class="item">
+                        <label class="label">Drzava:</label>
+                        <br>
+                        <span>{{company.address.country}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(5)">izmeni</button>
+                        <div *ngIf="changeElem == 5">
+                            <input type="text" formControlName="country" class="input">
+                            <div *ngIf="formGroup.controls['country'].invalid && (formGroup.controls['country'].dirty || formGroup.controls['country'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['country'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['country'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Grad:</label>
+                        <br>
+                        <span>{{company.address.city}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(6)">izmeni</button>
+                        <div *ngIf="changeElem == 6">
+                            <input type="text" formControlName="city" class="input">
+                            <div *ngIf="formGroup.controls['city'].invalid && (formGroup.controls['city'].dirty || formGroup.controls['city'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['city'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['city'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Postanski broj:</label>
+                        <br>
+                        <span>{{company.address.postCode}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(7)">izmeni</button>
+                        <div *ngIf="changeElem == 7">
+                            <input type="number" formControlName="postCode" class="input">
+                            <div *ngIf="formGroup.controls['postCode'].invalid && (formGroup.controls['postCode'].dirty || formGroup.controls['postCode'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['postCode'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['postCode'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Ulica:</label>
+                        <br>
+                        <span>{{company.address.street}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(8)">izmeni</button>
+                        <div *ngIf="changeElem == 8">
+                            <input type="text" formControlName="street" class="input">
+                            <div *ngIf="formGroup.controls['street'].invalid && (formGroup.controls['street'].dirty || formGroup.controls['street'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['street'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['street'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Broj:</label>
+                        <br>
+                        <span>{{company.address.streetNumber}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(9)">izmeni</button>
+                        <div *ngIf="changeElem == 9">
+                            <input type="number" formControlName="streetNumber" class="input">
+                            <div *ngIf="formGroup.controls['streetNumber'].invalid && (formGroup.controls['streetNumber'].dirty || formGroup.controls['streetNumber'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['streetNumber'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['streetNumber'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <label class="label">Odgovorno lice:</label>
+                <br>
+                <div id="company-representative" class="section">
+                    <div class="item">
+                        <label class="label">Ime:</label>
+                        <br>
+                        <span>{{company.firstname}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(10)">izmeni</button>
+                        <div *ngIf="changeElem == 10">
+                            <input  type="text" formControlName="firstname" class="input">
+                            <div *ngIf="formGroup.controls['firstname'].invalid && (formGroup.controls['firstname'].dirty || formGroup.controls['firstname'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['firstname'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['firstname'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Prezime:</label>
+                        <br>
+                        <span>{{company.lastname}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(11)">izmeni</button>
+                        <div *ngIf="changeElem == 11">
+                            <input type="text" formControlName="lastname" class="input">
+                            <div *ngIf="formGroup.controls['lastname'].invalid && (formGroup.controls['lastname'].dirty || formGroup.controls['lastname'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['lastname'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['lastname'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Korisnicko ime:</label>
+                        <br>
+                        <span>{{company.username}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(12)">izmeni</button>
+                        <div *ngIf="changeElem == 12">
+                            <input type="text" formControlName="username" class="input">
+                            <div *ngIf="formGroup.controls['username'].invalid && (formGroup.controls['username'].dirty || formGroup.controls['username'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['username'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['username'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">Telefon: </label>
+                        <br>
+                        <span>{{company.phone}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(13)">izmeni</button>
+                        <div *ngIf="changeElem == 13">
+                            <input  type="text" formControlName="phone" class="input">
+                            <div *ngIf="formGroup.controls['phone'].invalid && (formGroup.controls['phone'].dirty || formGroup.controls['phone'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['phone'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['phone'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="label">E-mail: </label>
+                        <br>
+                        <span>{{company.email}}</span>
+                        <br>
+                        <button style="width: 20%" (click)="change(14)">izmeni</button>
+                        <div *ngIf="changeElem == 14">
+                            <input type="text" formControlName="email" class="input">
+                            <div *ngIf="formGroup.controls['email'].invalid && (formGroup.controls['email'].dirty || formGroup.controls['email'].touched)" class="alert">
+                                <div *ngIf="formGroup.controls['email'].errors['required']">
+                                    Prazno polje.
+                                </div>
+                            </div>
+                            <div *ngIf="!formGroup.controls['email'].invalid">
+                                <button (click)="save()">Sacuvaj</button>
+                                <button (click)="cancel()">Odustani</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *ngSwitchCase="2">
+            <app-company-view-bank-accounts [company]="company"></app-company-view-bank-accounts>
+        </div>
+        <div *ngSwitchCase="3">
+            <app-company-view-storage-unist [company]="company"></app-company-view-storage-unist>
+        </div>
+        <div *ngSwitchCase="4">
+            <app-company-view-cash-registers [company]="company"></app-company-view-cash-registers>
+        </div>
+    </div>   
+</div>
+

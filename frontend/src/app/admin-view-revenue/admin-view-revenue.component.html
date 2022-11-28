@@ -1,0 +1,83 @@
+<div>
+    <div>
+        <header style="background-color: orange;">
+            <a routerLink="/admin">Nazad</a>
+        </header>
+    </div>
+    <div class="container">
+        <div>
+            <div class="child" style="background-color: orange;">
+                <div>
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                        <label class="label" for="">Pregled izvestaja:</label>
+                        <hr/>
+                        <div>
+                            <label class="label" for="idcn">Naziv preduzeca:</label>
+                            <input id="idcn" type="text" formControlName="companyName" class="input">
+                        </div>
+                        <div>
+                            <label class="label" for="idpib">PIB:</label>
+                            <input id="idpib" type="text" formControlName="pib" class="input">
+                        </div>
+                        <div>
+                            <label class="label" for="idd1">od:</label>
+                            <input id="idd1" type="date" formControlName="dateFrom" class="input" style="width: 50%">
+                            <div *ngIf="formGroup.controls['dateFrom'].invalid && (formGroup.controls['dateFrom'].dirty || formGroup.controls['dateFrom'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="formGroup.controls['dateFrom'].errors['required']">
+                                    Obavezno polje.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label" for="idd2">do:</label>
+                            <input id="idd2" type="date" formControlName="dateTo" class="input" style="width: 50%">
+                            <div *ngIf="formGroup.controls['dateTo'].invalid && (formGroup.controls['dateTo'].dirty || formGroup.controls['dateTo'].touched || isSubmitted)" class="alert">
+                                <div *ngIf="formGroup.controls['dateTo'].errors['required']">
+                                   Obavezno polje.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button" type="submit">Pregledaj</button>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <div *ngIf="showBills">
+                    <label class="label">Izvestaj za period {{printDateFrom()}} - {{printDateTo()}}</label>
+                    <br>
+                    <label class="label">Za preduzece: {{printCompanyName()}}</label>
+                    <br>
+                    <label class="label">Za PIB: {{printPIB()}}</label>
+                    <hr>
+                    <div>
+                        <table>
+                            <tr>
+                                <td class="label">Porez:</td>
+                                <td class="label">{{report.tax}} RSD</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Pazar:</td>
+                                <td class="label">{{report.total}} RSD</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <button class="button" (click)="toggle()">Pregled racuna</button>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        <div>
+            <div *ngIf="viewBills" class="child" style="background-color: orange;">
+                <label class="label">Racuni</label>
+                <hr>
+                <div *ngIf="showBills">
+                    <div *ngFor="let bill of showBills">
+                        <app-view-bill-details [bill]="bill"></app-view-bill-details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
